@@ -39,7 +39,7 @@
 </div>
 
 
-<!--include foote link-->
+ <!--include foote link-->
  @include('back_end.layouts.link.footerLink')
 </body>
 </html>
