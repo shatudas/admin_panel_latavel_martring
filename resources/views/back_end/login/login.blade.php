@@ -18,10 +18,11 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign In</p>
 
-      <form action="#" method="post">
+      <form action="{{ route('admin.login-submit')  }}" method="post">
+        @csrf
 
         <div class="input-group mb-3 mt-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="text" name="email" class="form-control @error('email') is-valid @enderror " placeholder="Email Address" value="{{ old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -29,14 +30,32 @@
           </div>
         </div>
 
+
+        @error('email')
+          <div class="aleart text-danger">
+            {{ $message  }}
+          </div>
+        @enderror
+
         <div class="input-group mb-3 mt-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control @error('password') is-valid @enderror" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
+
         </div>
+
+        @error('password')
+            <div class="aleart text-danger">
+                {{ $message }}
+            </div>
+          @enderror
+
+          @if(session()->get('error'))
+          <div class="aleart text-danger">{{ session()->get('error') }} </div>
+          @endif
 
         <div class="row">
           <div class="col-12">
@@ -51,16 +70,14 @@
 
 
       <div class="social-auth-links text-center mb-3">
-        <a href="#" class="btn btn-block btn-primary">
-         SignIn
-        </a>
+            <button class="btn btn-block btn-primary">Sign In</button>
       </div>
 
 
       </form>
 
       <p class="mb-1">
-        <a href="{{ route('forget.password') }}"> forgot Your password</a>
+        <a href="{{ route('forget.password') }}"> forget Your password</a>
       </p>
     </div>
   </div>
