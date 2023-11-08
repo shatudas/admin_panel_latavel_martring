@@ -10,8 +10,9 @@ Route::get('admin/login',[LoginController::class,'admin_login'])->name('admin.lo
 Route::post('admin/login-submit',[LoginController::class,'admin_login_submit'])->name('admin.login-submit');
 Route::get('admin/logout',[LoginController::class,'admin_logout'])->name('admin.logout');
 Route::get('admin/forget-password',[LoginController::class,'forgat_password'])->name('forget.password');
-
-
+Route::post('admin/forget/password/submit',[LoginController::class,'forgat_password_submit'])->name('admin.forget.password.submit');
+Route::get('admin/forget-password/{token}/{email}',[LoginController::class,'reset_password'])->name('admin.reset.password');
+Route::post('admin/reset/password',[LoginController::class,'admin_reset_password'])->name('admin.reset.password');
 
 
 

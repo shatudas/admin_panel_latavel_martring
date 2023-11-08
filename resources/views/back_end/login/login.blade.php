@@ -22,7 +22,7 @@
         @csrf
 
         <div class="input-group mb-3 mt-3">
-          <input type="text" name="email" class="form-control @error('email') is-valid @enderror " placeholder="Email Address" value="{{ old('email') }}">
+          <input type="text" name="email" class="form-control @error('email') is-valid @enderror" placeholder="Email Address" value="{{ old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -55,6 +55,11 @@
 
           @if(session()->get('error'))
           <div class="aleart text-danger">{{ session()->get('error') }} </div>
+          @endif
+
+
+          @if(session()->get('success'))
+          <div class="aleart text-success">{{ session()->get('success') }} </div>
           @endif
 
         <div class="row">

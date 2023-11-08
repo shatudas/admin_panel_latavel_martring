@@ -17,9 +17,10 @@ class Websitemail extends Mailable
      *
      * @return void
      */
-    public function __construct($subject, $body)
+    public function __construct($subject,$body)
     {
-        //
+        $this->subject = $subject;
+        $this->body = $body;
     }
 
     /**
@@ -28,9 +29,10 @@ class Websitemail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->view('email.email')->with([
-            'subject' =>$this->subject;
-        ]);
-    }
+        {
+            return $this->view('email.email')->with([
+                'subject' => $this->subject,
+            ]);
+        }
+
 }
