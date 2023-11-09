@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\LoginController;
+use App\Http\Controllers\Backend\Admin\ProfileController;
 
 //_______backend part__________//
+
+//--------admin login-------//
 Route::get('admin/home',[AdminController::class,'admin_home'])->name('admin.home')->middleware('admin:admin');
 Route::get('admin/login',[LoginController::class,'admin_login'])->name('admin.login');
 Route::post('admin/login-submit',[LoginController::class,'admin_login_submit'])->name('admin.login-submit');
@@ -14,6 +17,9 @@ Route::post('admin/forget/password/submit',[LoginController::class,'forgat_passw
 Route::get('admin/forget-password/{token}/{email}',[LoginController::class,'reset_password'])->name('admin.reset.password');
 Route::post('admin/reset/password',[LoginController::class,'admin_reset_password'])->name('admin.reset.password');
 
+//------profile-----------//
+Route::get('admin/profile',[ProfileController::class,'admin_profile'])->name('admin.profile');
+Route::post('admin/profile/update',[ProfileController::class,'admin_profile_update'])->name('admin.profile.update');
 
 
 Route::get('/', function () {

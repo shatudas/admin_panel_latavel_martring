@@ -31,14 +31,13 @@
      </a>
 
      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-      <span class="dropdown-item dropdown-header">15 Notifications</span>
        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item">
-         <i class="fas fa-envelope mr-2"></i> 4 new messages
+        <a href="{{ route('admin.profile') }}" class="dropdown-item">
+         <i class="fas fa-user mr-2"></i> {{ Auth::guard('admin')->user()->name }}
         </a>
         <div class="dropdown-divider"></div>
          <a href="{{ route('admin.logout') }}" class="dropdown-item">
-          <i class="fas fa-users mr-2"></i>
+            <i class='fas fa-sign-out-alt'></i>
           <span class="text-muted text-sm">Login Out</span>
          </a>
 
