@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\LoginController;
 use App\Http\Controllers\Backend\Admin\ProfileController;
+use App\Http\Controllers\Frontend\Layout\HomeController;
+
+
+//_______frontend end__________//
+Route::get('/',[HomeController::class,'index'])->name('home');
 
 //_______backend part__________//
 
@@ -20,8 +25,3 @@ Route::post('admin/reset/password',[LoginController::class,'admin_reset_password
 //------profile-----------//
 Route::get('admin/profile',[ProfileController::class,'admin_profile'])->name('admin.profile');
 Route::post('admin/profile/update',[ProfileController::class,'admin_profile_update'])->name('admin.profile.update');
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
