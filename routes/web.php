@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\LoginController;
 use App\Http\Controllers\Backend\Admin\ProfileController;
 use App\Http\Controllers\Frontend\Layout\HomeController;
+use App\Http\Controllers\Backend\Admin\SliderController;
 
 
 //_______frontend end__________//
@@ -25,3 +26,7 @@ Route::post('admin/reset/password',[LoginController::class,'admin_reset_password
 //------profile-----------//
 Route::get('admin/profile',[ProfileController::class,'admin_profile'])->name('admin.profile');
 Route::post('admin/profile/update',[ProfileController::class,'admin_profile_update'])->name('admin.profile.update');
+
+
+//---------Slider---------//
+Route::get('slider/view',[SliderController::class,'slide_view'])->name('slider.view');
