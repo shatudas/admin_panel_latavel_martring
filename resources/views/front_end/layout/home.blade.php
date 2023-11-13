@@ -249,36 +249,30 @@
                     </div>
                 </div>
                 <div class="row">
+
+
                     <div class="col-12">
                         <div class="testimonial-carousel owl-carousel">
+                            @foreach($testimonial as $testimonials)
+
                             <div class="item">
                                 <div class="photo">
-                                    <img src="uploads/t1.jpg" alt="">
+                                    <img src="{{ asset('upload/Testimonial/'.$testimonials->image) }}" alt="">
                                 </div>
                                 <div class="text">
-                                    <h4>Robert Krol</h4>
-                                    <p>CEO, ABC Company</p>
+                                    <h4>{{ $testimonials->name }}</h4>
+                                    <p>{{ $testimonials->designation }}</p>
                                 </div>
                                 <div class="description">
                                     <p>
-                                        Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens. Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens.
+                                        {!! $testimonials->massage !!}
                                     </p>
                                 </div>
                             </div>
-                            <div class="item">
-                                <div class="photo">
-                                    <img src="{{ asset('front_end') }}/uploads/t2.jpg" alt="">
-                                </div>
-                                <div class="text">
-                                    <h4>Sal Harvey</h4>
-                                    <p>Director, DEF Company</p>
-                                </div>
-                                <div class="description">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens. Lorem ipsum dolor sit amet, an labores explicari qui, eu nostrum copiosae argumentum has. Latine propriae quo no, unum ridens.
-                                    </p>
-                                </div>
-                            </div>
+
+                            @endforeach
+
+
                         </div>
                     </div>
                 </div>

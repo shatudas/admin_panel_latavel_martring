@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\Admin\ProfileController;
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\FeatureController;
+use App\Http\Controllers\Backend\Admin\TestimonialController;
 
 
 
@@ -55,5 +56,16 @@ Route::post('feature/update/{id}',[FeatureController::class,'feature_update'])->
 Route::get('feature/active/{id}',[FeatureController::class,'feature_active'])->name('feature.active');
 Route::get('feature/inactive/{id}',[FeatureController::class,'feature_inactive'])->name('feature.inactive');
 Route::get('feature/delete/{id}',[FeatureController::class,'feature_delete'])->name('feature.delete');
+
+
+//---------Testimonial---------//
+Route::get('testimonial/view',[TestimonialController::class,'testimonial_view'])->name('testimonial.view');
+Route::get('testimonial/add',[TestimonialController::class,'testimonial_add'])->name('testimonial.add');
+Route::post('testimonial/store',[TestimonialController::class,'testimonial_store'])->name('testimonial.store');
+Route::get('testimonial/edit/{id}',[TestimonialController::class,'testimonial_edit'])->name('testimonial.edit');
+Route::post('testimonial/update/{id}',[TestimonialController::class,'testimonial_update'])->name('testimonial.update');
+Route::get('testimonial/active/{id}',[TestimonialController::class,'testimonial_active'])->name('testimonial.active');
+Route::get('testimonial/inactive/{id}',[TestimonialController::class,'testimonial_inactive'])->name('testimonial.inactive');
+Route::get('testimonial/delete/{id}',[TestimonialController::class,'testimonial_delete'])->name('testimonial.delete');
 
 });
