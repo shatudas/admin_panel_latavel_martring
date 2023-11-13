@@ -13,6 +13,8 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 
 //_______backend part__________//
 
+
+
 //--------admin login-------//
 Route::get('admin/home',[AdminController::class,'admin_home'])->name('admin.home')->middleware('admin:admin');
 Route::get('admin/login',[LoginController::class,'admin_login'])->name('admin.login');
@@ -23,6 +25,7 @@ Route::post('admin/forget/password/submit',[LoginController::class,'forgat_passw
 Route::get('admin/forget-password/{token}/{email}',[LoginController::class,'reset_password'])->name('admin.reset.password');
 Route::post('admin/reset/password',[LoginController::class,'admin_reset_password'])->name('admin.reset.password');
 
+Route::group(['middleware'=>'admin:admin'],function(){
 //------profile-----------//
 Route::get('admin/profile',[ProfileController::class,'admin_profile'])->name('admin.profile');
 Route::post('admin/profile/update',[ProfileController::class,'admin_profile_update'])->name('admin.profile.update');
@@ -30,3 +33,13 @@ Route::post('admin/profile/update',[ProfileController::class,'admin_profile_upda
 
 //---------Slider---------//
 Route::get('slider/view',[SliderController::class,'slide_view'])->name('slider.view');
+Route::get('slider/add',[SliderController::class,'slide_add'])->name('slider.add');
+Route::post('slider/store',[SliderController::class,'slide_store'])->name('slider.store');
+Route::get('slider/edit/{id}',[SliderController::class,'slide_edit'])->name('slider.edit');
+Route::post('slider/update/{id}',[SliderController::class,'slide_update'])->name('slider.update');
+Route::get('slider/active/{id}',[SliderController::class,'slide_active'])->name('slider.active');
+Route::get('slider/inactive/{id}',[SliderController::class,'slide_inactive'])->name('slider.inactive');
+Route::get('slider/delete/{id}',[SliderController::class,'slide_delete'])->name('slider.delete');
+
+
+});

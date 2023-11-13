@@ -3,30 +3,28 @@
 
         <div class="slider">
             <div class="slide-carousel owl-carousel">
-                <div class="item" style="background-image:url({{ asset('front_end') }}/uploads/slide1.jpg);">
+
+            @foreach ($slider as $data)
+
+                <div class="item" style="background-image:url({{ asset('upload/slider/'.$data->image )}});">
                     <div class="bg"></div>
                     <div class="text">
-                        <h2>Best Hotel in the City</h2>
+                        <h2{{ $data->title }}</h2>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
+                            {{ $data->subtitle }}
                         </p>
-                        <div class="button">
-                            <a href="">Read More</a>
-                        </div>
+
+                        @if($data->button_text != '')
+                            <div class="button">
+                                <a href="{{ $data->button_url }}" >{{ $data->button_text }}</a>
+                             </div>
+                        @endif
+
                     </div>
                 </div>
-                <div class="item" style="background-image:url({{ asset('front_end') }}/uploads/slide2.jpg);">
-                    <div class="bg"></div>
-                    <div class="text">
-                        <h2>Quality rooms for the guests</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero voluptate, veritatis esse dolorem soluta.
-                        </p>
-                        <div class="button">
-                            <a href="">Read More</a>
-                        </div>
-                    </div>
-                </div>
+
+            @endforeach
+
             </div>
         </div>
 

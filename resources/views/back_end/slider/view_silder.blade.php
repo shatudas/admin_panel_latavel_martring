@@ -28,8 +28,8 @@
           <div class="card">
 
            <div class="card-header">
-            <h3 class="card-title">Slider</h3>
-             <a href="" class="btn btn-primary btn-sm"  style="float:right;">Add Slider</a>
+            <h3 class="card-title">Add</h3>
+             <a href="{{ route('slider.add') }}" class="btn btn-primary btn-sm"  style="float:right;"><i class="fa fa-plus-circle"></i> Add Slider</a>
             </div>
 
            <div class="card-body">
@@ -38,8 +38,8 @@
              <thead>
               <tr>
                <th>Image</th>
-               <th>Title</th>
-               <th>Sub Title</th>
+               <th style="width:20%;">Title</th>
+               <th style="width:30%;">Sub Title</th>
                <th>Status</th>
                <th>Action</th>
               </tr>
@@ -50,26 +50,27 @@
               @foreach($alldata as $data)
               <tr>
                <td>
-                <img src="{{!empty($data->image)?url('upload/slider/'.$data->image):url('upload/no_image.png')}}" alt="" class="img-fluid">
+                <img src="{{!empty($data->image)?url('upload/slider/'.$data->image):url('upload/no_image.png')}}" alt="" class="img-fluid" style="height:120px;"   >
                </td>
                <td>{{ $data->title }}</td>
                <td>{{ $data->subtitle }}</td>
 
                <td>
                 @if($data->status=='0')
-                 <a href="" class="btn btn-primary btn-sm"> Publish </a>
+                 <a href="{{ route('slider.inactive',$data->id) }}" class="btn btn-primary btn-sm"> Publish </a>
                 @else
-                 <a href="" class="btn btn-danger btn-sm"> Draft </a>
+                 <a href="{{ route('slider.active',$data->id) }}" class="btn btn-danger btn-sm"> Draft </a>
                 @endif
                </td>
 
                <td>
-                <a title="Edit" href="" class="btn btn-sm btn-primary">
+                <a title="Edit" href="{{ route('slider.edit',$data->id) }}" class="btn btn-sm btn-primary">
                  <i class="fa fa-edit"></i>
                 </a>
-                <a title="Delete" href="" id="delete" class="btn btn-sm btn-danger">
-                 <i class="fa fa-trash"></i>
+                <a title="Delete" href="{{route('slider.delete',$data->id)}}" id="delete" class="btn btn-sm btn-danger">
+                    <i class="fa fa-trash"></i>
                 </a>
+
                </td>
 
               </tr>
