@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Slider;
 use App\Models\Feature;
 use App\Models\Testimonial;
+use App\Models\Post;
 
 
 class HomeController extends Controller
@@ -16,6 +17,7 @@ class HomeController extends Controller
         $data['slider'] = Slider::where('status','0')->get();
         $data['feature'] = Feature::where('status','0')->get();
         $data['testimonial'] = Testimonial::where('status','0')->get();
+        $data['post'] = Post::where('status','0')->orderBy('id','DESC')->limit(3)->get();
         return view('front_end.layout.home',$data);
     }
 

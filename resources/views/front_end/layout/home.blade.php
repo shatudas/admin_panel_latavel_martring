@@ -287,60 +287,32 @@
                     </div>
                 </div>
                 <div class="row">
+
+                @foreach ($post as $posts)
+
+
+
                     <div class="col-md-4">
                         <div class="inner">
                             <div class="photo">
-                                <img src="{{ asset('front_end') }}/uploads/1.jpg" alt="">
+                                <img src="{{ asset('upload/blog_post/'.$posts->image) }}" alt="">
                             </div>
                             <div class="text">
-                                <h2><a href="post.html">This is a sample blog post title</a></h2>
+                                <h2><a href="{{ route('post_view',$posts->id) }}">{{ $posts->heading }}</a></h2>
                                 <div class="short-des">
                                     <p>
-                                        If you want to get some good contents from the people of your country then just contribute into the main community of your people and I am sure you will be benfitted from that.
+                                    {!! $posts->short_content !!}
                                     </p>
                                 </div>
                                 <div class="button">
-                                    <a href="post.html" class="btn btn-primary">Read More</a>
+                                    <a href="{{ route('post_view',$posts->id) }}" class="btn btn-primary">Read More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="inner">
-                            <div class="photo">
-                                <img src="{{ asset('front_end') }}/uploads/2.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h2><a href="post.html">This is a sample blog post title</a></h2>
-                                <div class="short-des">
-                                    <p>
-                                        If you want to get some good contents from the people of your country then just contribute into the main community of your people and I am sure you will be benfitted from that.
-                                    </p>
-                                </div>
-                                <div class="button">
-                                    <a href="post.html" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="inner">
-                            <div class="photo">
-                                <img src="{{ asset('front_end') }}/uploads/3.jpg" alt="">
-                            </div>
-                            <div class="text">
-                                <h2><a href="post.html">This is a sample blog post title</a></h2>
-                                <div class="short-des">
-                                    <p>
-                                        If you want to get some good contents from the people of your country then just contribute into the main community of your people and I am sure you will be benfitted from that.
-                                    </p>
-                                </div>
-                                <div class="button">
-                                    <a href="post.html" class="btn btn-primary">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+                    @endforeach
+
                 </div>
             </div>
         </div>

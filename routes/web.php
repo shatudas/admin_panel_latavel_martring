@@ -4,15 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\Admin\LoginController;
 use App\Http\Controllers\Backend\Admin\ProfileController;
-use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\FeatureController;
 use App\Http\Controllers\Backend\Admin\TestimonialController;
+use App\Http\Controllers\Backend\Admin\PostController;
+
+use App\Http\Controllers\Frontend\Layout\HomeController;
+use App\Http\Controllers\Frontend\Layout\PostsController;
 
 
 
 //_______frontend end__________//
 Route::get('/',[HomeController::class,'index'])->name('home');
+
+Route::get('post',[PostsController::class,'post'])->name('post');
+Route::get('post-view/{id}',[PostsController::class,'postView'])->name('post_view');
 
 
 
@@ -67,5 +73,18 @@ Route::post('testimonial/update/{id}',[TestimonialController::class,'testimonial
 Route::get('testimonial/active/{id}',[TestimonialController::class,'testimonial_active'])->name('testimonial.active');
 Route::get('testimonial/inactive/{id}',[TestimonialController::class,'testimonial_inactive'])->name('testimonial.inactive');
 Route::get('testimonial/delete/{id}',[TestimonialController::class,'testimonial_delete'])->name('testimonial.delete');
+
+
+
+//---------Testimonial---------//
+Route::get('post/view',[PostController::class,'post_view'])->name('post.view');
+Route::get('post/add',[PostController::class,'post_add'])->name('post.add');
+Route::post('post/store',[PostController::class,'post_store'])->name('post.store');
+Route::get('post/edit/{id}',[PostController::class,'post_edit'])->name('post.edit');
+Route::post('post/update/{id}',[PostController::class,'post_update'])->name('post.update');
+Route::get('post/active/{id}',[PostController::class,'post_active'])->name('post.active');
+Route::get('post/inactive/{id}',[PostController::class,'post_inactive'])->name('post.inactive');
+Route::get('post/delete/{id}',[PostController::class,'post_delete'])->name('post.delete');
+
 
 });
