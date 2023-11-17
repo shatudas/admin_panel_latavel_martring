@@ -8,9 +8,12 @@ use App\Http\Controllers\Backend\Admin\SliderController;
 use App\Http\Controllers\Backend\Admin\FeatureController;
 use App\Http\Controllers\Backend\Admin\TestimonialController;
 use App\Http\Controllers\Backend\Admin\PostController;
+use App\Http\Controllers\Backend\Admin\PhotoController;
+
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Frontend\Layout\PostsController;
+use App\Http\Controllers\Frontend\Layout\PhotosController;
 
 
 
@@ -19,6 +22,7 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::get('post',[PostsController::class,'post'])->name('post');
 Route::get('post-view/{id}',[PostsController::class,'postView'])->name('post_view');
+Route::get('photo',[PhotosController::class,'photo'])->name('photo');
 
 
 
@@ -85,6 +89,17 @@ Route::post('post/update/{id}',[PostController::class,'post_update'])->name('pos
 Route::get('post/active/{id}',[PostController::class,'post_active'])->name('post.active');
 Route::get('post/inactive/{id}',[PostController::class,'post_inactive'])->name('post.inactive');
 Route::get('post/delete/{id}',[PostController::class,'post_delete'])->name('post.delete');
+
+
+//---------Photo---------//
+Route::get('photo/view',[PhotoController::class,'photo_view'])->name('photo.view');
+Route::get('photo/add',[PhotoController::class,'photo_add'])->name('photo.add');
+Route::post('photo/store',[PhotoController::class,'photo_store'])->name('photo.store');
+Route::get('photo/edit/{id}',[PhotoController::class,'photo_edit'])->name('photo.edit');
+Route::post('photo/update/{id}',[PhotoController::class,'photo_update'])->name('photo.update');
+Route::get('photo/active/{id}',[PhotoController::class,'photo_active'])->name('photo.active');
+Route::get('photo/inactive/{id}',[PhotoController::class,'photo_inactive'])->name('photo.inactive');
+Route::get('photo/delete/{id}',[PhotoController::class,'photo_delete'])->name('photo.delete');
 
 
 });
