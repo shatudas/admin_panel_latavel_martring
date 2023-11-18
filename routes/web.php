@@ -9,11 +9,13 @@ use App\Http\Controllers\Backend\Admin\FeatureController;
 use App\Http\Controllers\Backend\Admin\TestimonialController;
 use App\Http\Controllers\Backend\Admin\PostController;
 use App\Http\Controllers\Backend\Admin\PhotoController;
+use App\Http\Controllers\Backend\Admin\VideoController;
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Frontend\Layout\PostsController;
 use App\Http\Controllers\Frontend\Layout\PhotosController;
+use App\Http\Controllers\Frontend\Layout\VideosController;
 
 
 
@@ -23,6 +25,7 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('post',[PostsController::class,'post'])->name('post');
 Route::get('post-view/{id}',[PostsController::class,'postView'])->name('post_view');
 Route::get('photo',[PhotosController::class,'photo'])->name('photo');
+Route::get('video',[VideosController::class,'video'])->name('video');
 
 
 
@@ -100,6 +103,17 @@ Route::post('photo/update/{id}',[PhotoController::class,'photo_update'])->name('
 Route::get('photo/active/{id}',[PhotoController::class,'photo_active'])->name('photo.active');
 Route::get('photo/inactive/{id}',[PhotoController::class,'photo_inactive'])->name('photo.inactive');
 Route::get('photo/delete/{id}',[PhotoController::class,'photo_delete'])->name('photo.delete');
+
+
+//---------Video---------//
+Route::get('video/view',[VideoController::class,'video_view'])->name('video.view');
+Route::get('video/add',[VideoController::class,'video_add'])->name('video.add');
+Route::post('video/store',[VideoController::class,'video_store'])->name('video.store');
+Route::get('video/edit/{id}',[VideoController::class,'video_edit'])->name('video.edit');
+Route::post('video/update/{id}',[VideoController::class,'video_update'])->name('video.update');
+Route::get('video/active/{id}',[VideoController::class,'video_active'])->name('video.active');
+Route::get('video/inactive/{id}',[VideoController::class,'video_inactive'])->name('video.inactive');
+Route::get('video/delete/{id}',[VideoController::class,'video_delete'])->name('video.delete');
 
 
 });
