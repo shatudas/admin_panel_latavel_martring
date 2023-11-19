@@ -10,13 +10,14 @@ use App\Http\Controllers\Backend\Admin\TestimonialController;
 use App\Http\Controllers\Backend\Admin\PostController;
 use App\Http\Controllers\Backend\Admin\PhotoController;
 use App\Http\Controllers\Backend\Admin\VideoController;
+use App\Http\Controllers\Backend\Admin\FAQController;
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Frontend\Layout\PostsController;
 use App\Http\Controllers\Frontend\Layout\PhotosController;
 use App\Http\Controllers\Frontend\Layout\VideosController;
-
+use App\Http\Controllers\Frontend\Layout\FAQsController;
 
 
 //_______frontend end__________//
@@ -26,6 +27,7 @@ Route::get('post',[PostsController::class,'post'])->name('post');
 Route::get('post-view/{id}',[PostsController::class,'postView'])->name('post_view');
 Route::get('photo',[PhotosController::class,'photo'])->name('photo');
 Route::get('video',[VideosController::class,'video'])->name('video');
+Route::get('faq',[FAQsController::class,'faq'])->name('faq');
 
 
 
@@ -114,6 +116,18 @@ Route::post('video/update/{id}',[VideoController::class,'video_update'])->name('
 Route::get('video/active/{id}',[VideoController::class,'video_active'])->name('video.active');
 Route::get('video/inactive/{id}',[VideoController::class,'video_inactive'])->name('video.inactive');
 Route::get('video/delete/{id}',[VideoController::class,'video_delete'])->name('video.delete');
+
+
+
+//---------FAQ---------//
+Route::get('faq/view',[FAQController::class,'faq_view'])->name('faq.view');
+Route::get('faq/add',[FAQController::class,'faq_add'])->name('faq.add');
+Route::post('faq/store',[FAQController::class,'faq_store'])->name('faq.store');
+Route::get('faq/edit/{id}',[FAQController::class,'faq_edit'])->name('faq.edit');
+Route::post('faq/update/{id}',[FAQController::class,'faq_update'])->name('faq.update');
+Route::get('faq/active/{id}',[FAQController::class,'faq_active'])->name('faq.active');
+Route::get('faq/inactive/{id}',[FAQController::class,'faq_inactive'])->name('faq.inactive');
+Route::get('faq/delete/{id}',[FAQController::class,'faq_delete'])->name('faq.delete');
 
 
 });
