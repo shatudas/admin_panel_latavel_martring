@@ -33,7 +33,7 @@
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('front_end') }}/uploads/logo.png" alt="">
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -41,9 +41,17 @@
                         <li class="nav-item">
                             <a href="index.html" class="nav-link">Home</a>
                         </li>
+
+
+                        @if($global_page->status ==0)
                         <li class="nav-item">
-                            <a href="about.html" class="nav-link">About</a>
+                            <a href="{{ route('about') }}" class="nav-link">
+                            {{ $global_page->heading }}</a>
                         </li>
+                        @endif
+
+
+
                         <li class="nav-item">
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
                             <ul class="dropdown-menu">

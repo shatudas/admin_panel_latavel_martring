@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\Admin\PostController;
 use App\Http\Controllers\Backend\Admin\PhotoController;
 use App\Http\Controllers\Backend\Admin\VideoController;
 use App\Http\Controllers\Backend\Admin\FAQController;
+use App\Http\Controllers\Backend\Admin\AboutController;
+
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\Frontend\Layout\PostsController;
 use App\Http\Controllers\Frontend\Layout\PhotosController;
 use App\Http\Controllers\Frontend\Layout\VideosController;
 use App\Http\Controllers\Frontend\Layout\FAQsController;
+use App\Http\Controllers\Frontend\Layout\PagesController;
 
 
 //_______frontend end__________//
@@ -28,6 +31,7 @@ Route::get('post-view/{id}',[PostsController::class,'postView'])->name('post_vie
 Route::get('photo',[PhotosController::class,'photo'])->name('photo');
 Route::get('video',[VideosController::class,'video'])->name('video');
 Route::get('faq',[FAQsController::class,'faq'])->name('faq');
+Route::get('about',[PagesController::class,'about'])->name('about');
 
 
 
@@ -129,5 +133,9 @@ Route::get('faq/active/{id}',[FAQController::class,'faq_active'])->name('faq.act
 Route::get('faq/inactive/{id}',[FAQController::class,'faq_inactive'])->name('faq.inactive');
 Route::get('faq/delete/{id}',[FAQController::class,'faq_delete'])->name('faq.delete');
 
+
+//---------About---------//
+Route::get('about/add',[AboutController::class,'about_add'])->name('about.add');
+Route::post('about/update/{id}',[AboutController::class,'about_update'])->name('about.update');
 
 });
