@@ -12,7 +12,7 @@ use App\Http\Controllers\Backend\Admin\PhotoController;
 use App\Http\Controllers\Backend\Admin\VideoController;
 use App\Http\Controllers\Backend\Admin\FAQController;
 use App\Http\Controllers\Backend\Admin\AboutController;
-
+use App\Http\Controllers\Backend\Admin\TermsController;
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
@@ -32,6 +32,7 @@ Route::get('photo',[PhotosController::class,'photo'])->name('photo');
 Route::get('video',[VideosController::class,'video'])->name('video');
 Route::get('faq',[FAQsController::class,'faq'])->name('faq');
 Route::get('about',[PagesController::class,'about'])->name('about');
+Route::get('term',[PagesController::class,'term'])->name('term');
 
 
 
@@ -137,5 +138,10 @@ Route::get('faq/delete/{id}',[FAQController::class,'faq_delete'])->name('faq.del
 //---------About---------//
 Route::get('about/add',[AboutController::class,'about_add'])->name('about.add');
 Route::post('about/update/{id}',[AboutController::class,'about_update'])->name('about.update');
+
+
+//---------Terms & Comdition---------//
+Route::get('terms/add',[TermsController::class,'terms_add'])->name('terms.add');
+Route::post('terms/update/{id}',[TermsController::class,'terms_update'])->name('terms.update');
 
 });

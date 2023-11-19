@@ -172,8 +172,17 @@
                   <p>About US</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('terms.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Terms</p>
+                </a>
+              </li>
             </ul>
           </li>
+
+
+
 
 
          </li>

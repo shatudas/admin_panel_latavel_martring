@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend\Layout;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
+use App\Models\Term;
 class PagesController extends Controller
 {
     public function about(){
@@ -17,4 +18,22 @@ class PagesController extends Controller
         }
 
     }
+
+
+
+    public function term(){
+        $term = Term::where('status','0')->first();
+        if($term){
+            return view('Front_end.page.term',compact('term'));
+        }
+        else{
+            return redirect()->back();
+        }
+
+    }
+
+
+
+
+
 }
