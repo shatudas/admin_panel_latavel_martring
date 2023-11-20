@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\About;
 use App\Models\Term;
+use App\Models\Privacy;
+
+
 
 
 class AppServiceProvider extends ServiceProvider
@@ -30,8 +33,10 @@ class AppServiceProvider extends ServiceProvider
      Paginator::useBootstrap();
      $about_data = About::first();
      $term_data = Term::first();
+     $privacy_page = Privacy::first();
      view()->share('global_page',$about_data);
      view()->share('term_page',$term_data);
+     view()->share('privacy_page',$privacy_page);
 
     }
 }

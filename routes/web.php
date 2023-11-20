@@ -13,7 +13,7 @@ use App\Http\Controllers\Backend\Admin\VideoController;
 use App\Http\Controllers\Backend\Admin\FAQController;
 use App\Http\Controllers\Backend\Admin\AboutController;
 use App\Http\Controllers\Backend\Admin\TermsController;
-
+use App\Http\Controllers\Backend\Admin\PrivacyController;
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Frontend\Layout\PostsController;
@@ -21,6 +21,7 @@ use App\Http\Controllers\Frontend\Layout\PhotosController;
 use App\Http\Controllers\Frontend\Layout\VideosController;
 use App\Http\Controllers\Frontend\Layout\FAQsController;
 use App\Http\Controllers\Frontend\Layout\PagesController;
+
 
 
 //_______frontend end__________//
@@ -33,6 +34,7 @@ Route::get('video',[VideosController::class,'video'])->name('video');
 Route::get('faq',[FAQsController::class,'faq'])->name('faq');
 Route::get('about',[PagesController::class,'about'])->name('about');
 Route::get('term',[PagesController::class,'term'])->name('term');
+Route::get('privacy',[PagesController::class,'privacy'])->name('privacy');
 
 
 
@@ -143,5 +145,9 @@ Route::post('about/update/{id}',[AboutController::class,'about_update'])->name('
 //---------Terms & Comdition---------//
 Route::get('terms/add',[TermsController::class,'terms_add'])->name('terms.add');
 Route::post('terms/update/{id}',[TermsController::class,'terms_update'])->name('terms.update');
+
+//---------Privacy---------//
+Route::get('privacy/add',[PrivacyController::class,'privacy_add'])->name('privacy.add');
+Route::post('privacy/update/{id}',[PrivacyController::class,'privacy_update'])->name('privacy.update');
 
 });

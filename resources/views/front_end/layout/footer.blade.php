@@ -21,7 +21,14 @@
                         @if($term_page->status==0)
                         <li><a href="{{ route('term') }}">{{ $term_page->heading }}</a></li>
                         @endif
-                        <li><a href="privacy.html">Privacy Policy</a></li>
+
+
+
+                        @if($privacy_page->status==0)
+                        <li><a href="{{ route('privacy') }}">{{ $privacy_page->heading }}</a></li>
+                        @endif
+
+
                         <li><a href="disclaimer.html">Disclaimer</a></li>
                     </ul>
                 </div>

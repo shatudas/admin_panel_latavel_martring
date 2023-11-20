@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\Term;
+use App\Models\Privacy;
 class PagesController extends Controller
 {
     public function about(){
@@ -31,6 +32,22 @@ class PagesController extends Controller
         }
 
     }
+
+
+    public function privacy(){
+        $privacy = Privacy::where('status','0')->first();
+        if($privacy){
+            return view('Front_end.page.privacy',compact('privacy'));
+        }
+        else{
+            return redirect()->back();
+        }
+
+    }
+
+
+
+
 
 
 
