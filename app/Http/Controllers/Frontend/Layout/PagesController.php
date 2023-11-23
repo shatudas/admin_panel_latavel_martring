@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\About;
 use App\Models\Term;
 use App\Models\Privacy;
+use App\Models\Contact;
+
+
 class PagesController extends Controller
 {
     public function about(){
@@ -38,6 +41,19 @@ class PagesController extends Controller
         $privacy = Privacy::where('status','0')->first();
         if($privacy){
             return view('Front_end.page.privacy',compact('privacy'));
+        }
+        else{
+            return redirect()->back();
+        }
+
+    }
+
+
+
+    public function contect(){
+        $contect = Contact::where('status','0')->first();
+        if($contect){
+            return view('Front_end.page.contact',compact('contect'));
         }
         else{
             return redirect()->back();

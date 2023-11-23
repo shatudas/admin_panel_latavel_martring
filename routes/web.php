@@ -14,6 +14,8 @@ use App\Http\Controllers\Backend\Admin\FAQController;
 use App\Http\Controllers\Backend\Admin\AboutController;
 use App\Http\Controllers\Backend\Admin\TermsController;
 use App\Http\Controllers\Backend\Admin\PrivacyController;
+use App\Http\Controllers\Backend\Admin\ContactController;
+
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Frontend\Layout\PostsController;
@@ -35,6 +37,7 @@ Route::get('faq',[FAQsController::class,'faq'])->name('faq');
 Route::get('about',[PagesController::class,'about'])->name('about');
 Route::get('term',[PagesController::class,'term'])->name('term');
 Route::get('privacy',[PagesController::class,'privacy'])->name('privacy');
+Route::get('contect',[PagesController::class,'contect'])->name('contect');
 
 
 
@@ -149,5 +152,10 @@ Route::post('terms/update/{id}',[TermsController::class,'terms_update'])->name('
 //---------Privacy---------//
 Route::get('privacy/add',[PrivacyController::class,'privacy_add'])->name('privacy.add');
 Route::post('privacy/update/{id}',[PrivacyController::class,'privacy_update'])->name('privacy.update');
+
+
+//---------Contact---------//
+Route::get('contact/add',[ContactController::class,'contact_add'])->name('contact.add');
+Route::post('contact/update/{id}',[ContactController::class,'contact_update'])->name('contact.update');
 
 });

@@ -86,9 +86,15 @@
                         <li class="nav-item">
                             <a href="{{ route('post') }}" class="nav-link">Blog</a>
                         </li>
+
+                        @if($contact_page->status==0)
                         <li class="nav-item">
-                            <a href="contact.html" class="nav-link">Contact</a>
+                            <a href="{{ route('contect') }}" class="nav-link">{{ $contact_page->heading }}</a>
                         </li>
+                        @endif
+
+
+
                     </ul>
                 </div>
             </nav>
