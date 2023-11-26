@@ -50,8 +50,6 @@
                         </li>
                         @endif
 
-
-
                         <li class="nav-item">
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Room & Suite</a>
                             <ul class="dropdown-menu">
@@ -75,13 +73,21 @@
                         <li class="nav-item">
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a href="{{ route('photo') }}" class="nav-link">Photo Gallery</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('video') }}" class="nav-link">Video Gallery</a>
-                                </li>
-                            </ul>
+
+
+						    @if($pageheading->photostatus ==0)
+				            <li class="nav-item">
+							 <a href="{{ route('photo') }}" class="nav-link">
+							 {{ $pageheading->photoheading }}</a>
+						    </li>
+					        @endif
+
+                            @if($pageheading->videostatus ==0)
+                            <li class="nav-item">
+                             <a href="{{ route('video') }}" class="nav-link">{{ $pageheading->videoheading }}</a>
+                            </li>
+                            @endif
+                          </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('post') }}" class="nav-link">Blog</a>

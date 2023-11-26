@@ -5,11 +5,22 @@
                 <div class="item">
                     <h2 class="heading">Site Links</h2>
                     <ul class="useful-links">
-                        <li><a href="{{ route('faq') }}">FAQ</a></li>
+
+                        @if($pageheading->faqstatus ==0)
+                        <li>
+                            <a href="{{ route('faq') }}">{{ $pageheading->faqheading }}</a>
+                        </li>
+                        @endif
                         <li><a href="rooms.html">Rooms & Suites</a></li>
                         <li><a href="photo-gallery.html">Photo Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        @if($pageheading->faqstatus ==0)
+                        <li>
+                            <a href="{{ route('post') }}">{{ $pageheading->blogheading }}</a>
+                        </li>
+                        @endif
+                        <li>
+                            <a href="{{ route('contect') }}">Contact</a>
+                        </li>
                     </ul>
                 </div>
             </div>

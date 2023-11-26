@@ -8,6 +8,7 @@ use App\Models\About;
 use App\Models\Term;
 use App\Models\Privacy;
 use App\Models\Contact;
+use App\Models\Pageheadding;
 
 
 class PagesController extends Controller
@@ -63,7 +64,7 @@ class PagesController extends Controller
 
 
 
-
+    
 
 
 

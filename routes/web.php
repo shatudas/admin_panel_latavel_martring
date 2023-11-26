@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\Admin\AboutController;
 use App\Http\Controllers\Backend\Admin\TermsController;
 use App\Http\Controllers\Backend\Admin\PrivacyController;
 use App\Http\Controllers\Backend\Admin\ContactController;
+use App\Http\Controllers\Backend\Admin\PageHeadingController;
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
@@ -157,5 +158,22 @@ Route::post('privacy/update/{id}',[PrivacyController::class,'privacy_update'])->
 //---------Contact---------//
 Route::get('contact/add',[ContactController::class,'contact_add'])->name('contact.add');
 Route::post('contact/update/{id}',[ContactController::class,'contact_update'])->name('contact.update');
+
+//---------Page Heading---------//
+Route::get('photoheading/add',[PageHeadingController::class,'photoheading_add'])->name('photoheading.add');
+Route::post('photoheading/update/{id}',[PageHeadingController::class,'photoheading_update'])->name('photoheading.update');
+
+Route::get('videoheading/add',[PageHeadingController::class,'videoheading_add'])->name('videoheading.add');
+Route::post('videoheading/update/{id}',[PageHeadingController::class,'videoheading_update'])->name('videoheading.update');
+
+Route::get('faqheading/add',[PageHeadingController::class,'faqheading_add'])->name('faqheading.add');
+Route::post('faqheading/update/{id}',[PageHeadingController::class,'faqheading_update'])->name('faqheading.update');
+
+Route::get('blogheading/add',[PageHeadingController::class,'blogheading_add'])->name('blogheading.add');
+Route::post('blogheading/update/{id}',[PageHeadingController::class,'blogheading_update'])->name('blogheading.update');
+
+
+
+
 
 });

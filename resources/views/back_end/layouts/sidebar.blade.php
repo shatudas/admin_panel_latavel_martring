@@ -193,6 +193,42 @@
             </ul>
           </li>
 
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                SetUp Heading
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('photoheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Photo Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('videoheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Video Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('faqheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>FAQ Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('blogheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Blog Page</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
 
 
 
