@@ -23,6 +23,14 @@ class CreatePageheaddingsTable extends Migration
             $table->string('faqstatus')->nullable();
             $table->string('blogheading')->nullable();
             $table->string('blogstatus')->nullable();
+            $table->string('cartheading')->nullable();
+            $table->string('cartstatus')->nullable();
+            $table->string('checkoutheading')->nullable();
+            $table->string('checkoutstatus')->nullable();
+            $table->string('singupheading')->nullable();
+            $table->string('singupstatus')->nullable();
+            $table->string('singheading')->nullable();
+            $table->string('singstatus')->nullable();
             $table->timestamps();
         });
     }

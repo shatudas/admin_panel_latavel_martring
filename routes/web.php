@@ -172,6 +172,19 @@ Route::post('faqheading/update/{id}',[PageHeadingController::class,'faqheading_u
 Route::get('blogheading/add',[PageHeadingController::class,'blogheading_add'])->name('blogheading.add');
 Route::post('blogheading/update/{id}',[PageHeadingController::class,'blogheading_update'])->name('blogheading.update');
 
+Route::get('cartheading/add',[PageHeadingController::class,'cartheading_add'])->name('cartheading.add');
+Route::post('cartheading/update/{id}',[PageHeadingController::class,'cartheading_update'])->name('cartheading.update');
+
+Route::get('cheakheading/add',[PageHeadingController::class,'cheakheading_add'])->name('cheakheading.add');
+Route::post('cheakheading/update/{id}',[PageHeadingController::class,'cheakheading_update'])->name('cheakheading.update');
+
+Route::get('singup_heading/add',[PageHeadingController::class,'singup_heading_add'])->name('singup_heading.add');
+Route::post('singup_heading/update/{id}',[PageHeadingController::class,'singup_heading_update'])->name('singup_heading.update');
+
+Route::get('singin_heading/add',[PageHeadingController::class,'singin_heading_add'])->name('singin_heading.add');
+Route::post('singin_heading/update/{id}',[PageHeadingController::class,'singin_heading_update'])->name('singin_heading.update');
+
+
 
 
 

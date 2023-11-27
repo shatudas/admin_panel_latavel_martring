@@ -8,7 +8,7 @@ use App\Models\Pageheadding;
 
 class PageHeadingController extends Controller
 {
-   
+
 
 						public function photoheading_add(){
 								$data['alldata']= Pageheadding::where('id',1)->first();
@@ -36,7 +36,7 @@ class PageHeadingController extends Controller
 								return view('back_end.pageSetup.video_page',$data);
       }
 
-				
+
       public function videoheading_update(Request $request ,$id){
 
         $request->validate([
@@ -82,7 +82,6 @@ class PageHeadingController extends Controller
 
 
       public function blogheading_update(Request $request ,$id){
-      
 
         $request->validate([
         'blogheading' => 'required',
@@ -97,5 +96,100 @@ class PageHeadingController extends Controller
 
          return redirect()->route('blogheading.add')->with('success','Data Update Successfully');
        }
+
+
+       public function cartheading_add(){
+        $data['alldata']= Pageheadding::where('id',1)->first();
+        return view('back_end.pageSetup.cart_page',$data);
+        }
+
+
+       public function cartheading_update(Request $request ,$id){
+
+        $request->validate([
+        'cartheading' => 'required',
+        'cartstatus'  => 'required'
+        ]);
+
+         $data = Pageheadding::where('id',$id)->first();
+         $data->cartheading    = $request->cartheading;
+         $data->cartstatus	   = $request->cartstatus;
+
+         $data->update();
+
+         return redirect()->route('cartheading.add')->with('success','Data Update Successfully');
+       }
+
+
+       public function cheakheading_add(){
+         $data['alldata']= Pageheadding::where('id',1)->first();
+         return view('back_end.pageSetup.cheakout_page',$data);
+        }
+
+      public function cheakheading_update(Request $request ,$id){
+
+        $request->validate([
+        'checkoutheading' => 'required',
+        'checkoutstatus'  => 'required'
+        ]);
+
+         $data = Pageheadding::where('id',$id)->first();
+         $data->checkoutheading    = $request->checkoutheading;
+         $data->checkoutstatus	   = $request->checkoutstatus;
+
+         $data->update();
+
+         return redirect()->route('cheakheading.add')->with('success','Data Update Successfully');
+       }
+
+
+		public function singup_heading_add(){
+			$data['alldata']= Pageheadding::where('id',1)->first();
+		    return view('back_end.pageSetup.singup_page',$data);
+		}
+
+
+      public function singup_heading_update(Request $request ,$id){
+
+        $request->validate([
+        'singupheading' => 'required',
+        'singupstatus'  => 'required'
+        ]);
+
+         $data = Pageheadding::where('id',$id)->first();
+         $data->singupheading    = $request->singupheading;
+         $data->singupstatus	 = $request->singupstatus;
+
+         $data->update();
+
+         return redirect()->route('singup_heading.add')->with('success','Data Update Successfully');
+       }
+
+
+
+
+						public function singin_heading_add(){
+								$data['alldata']= Pageheadding::where('id',1)->first();
+								return view('back_end.pageSetup.singin_page',$data);
+						}
+
+
+      public function singin_heading_update(Request $request ,$id){
+
+        $request->validate([
+        'singheading' => 'required',
+        'singstatus'  => 'required'
+        ]);
+
+         $data = Pageheadding::where('id',$id)->first();
+         $data->singheading    = $request->singheading;
+         $data->singstatus	   = $request->singstatus;
+
+         $data->update();
+
+         return redirect()->route('singin_heading.add')->with('success','Data Update Successfully');
+       }
+
+
 
 }

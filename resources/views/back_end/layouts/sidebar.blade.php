@@ -226,6 +226,30 @@
                   <p>Blog Page</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('cartheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Cart Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('cheakheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Chack Out Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('singup_heading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SingUp Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('singin_heading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SingIn Page</p>
+                </a>
+              </li>
             </ul>
           </li>
 

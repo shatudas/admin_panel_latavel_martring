@@ -9,10 +9,23 @@
             </div>
             <div class="col-md-6 right-side">
                 <ul class="right">
-                    <li class="menu"><a href="cart.html">Cart</a></li>
-                    <li class="menu"><a href="checkout.html">Checkout</a></li>
-                    <li class="menu"><a href="signup.html">Sign Up</a></li>
-                    <li class="menu"><a href="login.html">Login</a></li>
+
+                    @if($pageheading->cartstatus ==0)
+                      <li class="menu"><a href="">{{ $pageheading->cartheading }}</a></li>
+					@endif
+
+                    @if($pageheading->checkoutstatus ==0)
+                      <li class="menu"><a href="">{{ $pageheading->checkoutheading }}</a></li>
+					@endif
+
+                    @if($pageheading->singupstatus ==0)
+                      <li class="menu"><a href="">{{ $pageheading->singupheading }}</a></li>
+					@endif
+
+                    @if($pageheading->singstatus ==0)
+                      <li class="menu"><a href="">{{ $pageheading->singheading }}</a></li>
+					@endif
+
                 </ul>
             </div>
         </div>
@@ -70,6 +83,9 @@
                                 </li>
                             </ul>
                         </li>
+
+                        @if($pageheading->photostatus ==0 || $pageheading->videostatus ==0)
+
                         <li class="nav-item">
                             <a href="javascript:void;" class="nav-link dropdown-toggle">Gallery</a>
                             <ul class="dropdown-menu">
@@ -89,6 +105,11 @@
                             @endif
                           </ul>
                         </li>
+
+                        @endif
+
+
+
                         <li class="nav-item">
                             <a href="{{ route('post') }}" class="nav-link">Blog</a>
                         </li>
