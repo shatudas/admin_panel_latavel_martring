@@ -21,14 +21,11 @@
 
         @include('front_end.layout.footer')
 
-
         <div class="scroll-top">
             <i class="fa fa-angle-up"></i>
         </div>
 
         @include('front_end.layout.link.footer')
-
-
 
         @if(session()->get('error'))
         <script>

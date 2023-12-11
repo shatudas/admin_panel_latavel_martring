@@ -37,17 +37,31 @@ class SubscriberController extends Controller
       $subject = 'Subscriber Verification';
       $massage = 'Please Click On The Link Below To Confirm Subcripction';
       $massage .= '<a href="'.$varification_link.'" >';
-      $massage .= $varification_link;
+      $massage .= '<br>Varification';
       $massage .= '</a>';
 
       Mail::to($request->email)->send(new Websitemail($subject,$massage));
 
-    return response()->json(['code'=>1,'success_massage'=>'Please check your email to confirm subcriction']);
+    return response()->json(['code'=>1,'success_message'=>'Please check your email to confirm subcriction']);
     }
   }
 
 
-    public function varify(){
+    public function varify($email, $token){
+
+     $subscriber_data = Subscriber::where('email',$email)->where('token',$token)->first();
+
+     if($subscriber_data){
+       $subscriber_data->token  = '';
+       $subscriber_data->status =  1;
+       $subscriber_data->update();
+
+       return redirect()->route('home')->with('success','Your Subscription Is Varified Successfull !');
+
+     }else{
+      return redirect()->route('home');
+     }
+
 
     }
 

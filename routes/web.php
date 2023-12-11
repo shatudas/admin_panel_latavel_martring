@@ -47,8 +47,6 @@ Route::get('contact_send_email',[contectsController::class,'contact_send_email']
 Route::post('subscriber/send_email',[SubscriberController::class,'send_email'])->name('subscriber_send_email');
 Route::get('subscriber/varify/{email}/{token}',[SubscriberController::class,'varify'])->name('subscriber_varify');
 
-
-
 //_______backend part__________//
 
 //--------admin login-------//
