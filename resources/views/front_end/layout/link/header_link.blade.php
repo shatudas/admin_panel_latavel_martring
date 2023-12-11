@@ -28,5 +28,7 @@
 <script src="{{ asset('front_end') }}/js/daterangepicker.min.js"></script>
 <script src="{{ asset('front_end') }}/js/sticky_sidebar.js"></script>
 <script src="{{ asset('front_end') }}/js/jquery.meanmenu.js"></script>
+<script src="{{ asset('front_end/js/iziToast.min.js') }}"></script>
+
 
 <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500&display=swap" rel="stylesheet">
