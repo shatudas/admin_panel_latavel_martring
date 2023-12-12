@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\Admin\TermsController;
 use App\Http\Controllers\Backend\Admin\PrivacyController;
 use App\Http\Controllers\Backend\Admin\ContactController;
 use App\Http\Controllers\Backend\Admin\PageHeadingController;
+use App\Http\Controllers\Backend\Admin\AdminSubscriberController;
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
@@ -190,6 +191,9 @@ Route::get('singin_heading/add',[PageHeadingController::class,'singin_heading_ad
 Route::post('singin_heading/update/{id}',[PageHeadingController::class,'singin_heading_update'])->name('singin_heading.update');
 
 
+Route::get('subscriber/show',[AdminSubscriberController::class,'subscriber_show'])->name('subscriber.show');
+Route::get('subscriber/send-email',[AdminSubscriberController::class,'send_email'])->name('subscriber.send_email');
+Route::post('subscriber/send-email-submit',[AdminSubscriberController::class,'send_email_submit'])->name('subscriber.send_email_submit');
 
 
 
