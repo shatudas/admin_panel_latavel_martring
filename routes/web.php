@@ -17,6 +17,8 @@ use App\Http\Controllers\Backend\Admin\PrivacyController;
 use App\Http\Controllers\Backend\Admin\ContactController;
 use App\Http\Controllers\Backend\Admin\PageHeadingController;
 use App\Http\Controllers\Backend\Admin\AdminSubscriberController;
+use App\Http\Controllers\Backend\Admin\AmenityController;
+use App\Http\Controllers\Backend\Admin\RoomController;
 
 
 use App\Http\Controllers\Frontend\Layout\HomeController;
@@ -147,6 +149,30 @@ Route::get('faq/inactive/{id}',[FAQController::class,'faq_inactive'])->name('faq
 Route::get('faq/delete/{id}',[FAQController::class,'faq_delete'])->name('faq.delete');
 
 
+
+//---------amenity---------//
+Route::get('amenity/view',[AmenityController::class,'amenity_view'])->name('amenity.view');
+Route::get('amenity/add',[AmenityController::class,'amenity_add'])->name('amenity.add');
+Route::post('amenity/store',[AmenityController::class,'amenity_store'])->name('amenity.store');
+Route::get('amenity/edit/{id}',[AmenityController::class,'amenity_edit'])->name('amenity.edit');
+Route::post('amenity/update/{id}',[AmenityController::class,'amenity_update'])->name('amenity.update');
+Route::get('amenity/active/{id}',[AmenityController::class,'amenity_active'])->name('amenity.active');
+Route::get('amenity/inactive/{id}',[AmenityController::class,'amenity_inactive'])->name('amenity.inactive');
+Route::get('amenity/delete/{id}',[AmenityController::class,'amenity_delete'])->name('amenity.delete');
+
+
+//---------room---------//
+Route::get('room/view',[RoomController::class,'room_view'])->name('room.view');
+Route::get('room/add',[RoomController::class,'room_add'])->name('room.add');
+Route::post('room/store',[RoomController::class,'room_store'])->name('room.store');
+Route::get('room/edit/{id}',[RoomController::class,'room_edit'])->name('room.edit');
+Route::post('room/update/{id}',[RoomController::class,'room_update'])->name('room.update');
+Route::get('room/active/{id}',[RoomController::class,'room_active'])->name('room.active');
+Route::get('room/inactive/{id}',[RoomController::class,'room_inactive'])->name('room.inactive');
+Route::get('room/delete/{id}',[RoomController::class,'room_delete'])->name('room.delete');
+
+
+
 //---------About---------//
 Route::get('about/add',[AboutController::class,'about_add'])->name('about.add');
 Route::post('about/update/{id}',[AboutController::class,'about_update'])->name('about.update');
@@ -194,8 +220,6 @@ Route::post('singin_heading/update/{id}',[PageHeadingController::class,'singin_h
 Route::get('subscriber/show',[AdminSubscriberController::class,'subscriber_show'])->name('subscriber.show');
 Route::get('subscriber/send-email',[AdminSubscriberController::class,'send_email'])->name('subscriber.send_email');
 Route::post('subscriber/send-email-submit',[AdminSubscriberController::class,'send_email_submit'])->name('subscriber.send_email_submit');
-
-
 
 
 });
