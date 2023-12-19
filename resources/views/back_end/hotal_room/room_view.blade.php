@@ -38,15 +38,15 @@
                <th> Photo </th>
                <th> Name </th>
                <th> Price (Par Night) </th>
-               <th> Status </th>
-               <th> Action </th>
+               <th align="center"> Status </th>
+               <th align="center"> Action </th>
               </tr>
              </thead>
 
              <tbody>
               @foreach($alldata as $data)
               <tr>
-                <td>
+                <td align="center">
                     <img src="{{!empty($data->featured_photo)?url('upload/room/'.$data->featured_photo):url('upload/no_image.png')}}" alt="" class="img-fluid" style="height:100px;">
                 </td>
                <td>
@@ -56,7 +56,7 @@
                 {{ $data->price }} BDT
                </td>
 
-               <td>
+               <td align="center">
                 @if($data->status=='0')
                  <a href="{{ route('room.inactive',$data->id) }}" class="btn btn-primary btn-sm"> Publish </a>
                 @else
@@ -64,7 +64,7 @@
                 @endif
                </td>
 
-               <td>
+               <td align="center">
                 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter">
                  <i class="fa fa-eye"></i>
                 </button>
@@ -113,7 +113,7 @@
 
                         <div class="row mt-2">
                             <div class="col-md-4">Price <small> (Par Night)</small></div>
-                            <div class="col-md-8"><b>{{ $data->price }} </b> BDT</div>
+                            <div class="col-md-8"><b>{{ $data->price }} </b> <small>BDT</small> </div>
                         </div>
 
                         <div class="row mt-2">
@@ -146,9 +146,19 @@
                             <div class="col-md-8">{{ $data->total_guest }}</div>
                         </div>
 
+
                         <div class="row mt-2">
-                            <div class="col-md-4"> Guest</div>
-                            <div class="col-md-8">{{ $data->total_guest }}</div>
+                            <div class="col-md-4"> Amenitie</div>
+                            <div class="col-md-8">
+                              @php
+                                $amenitie_arr = explode(',',$data->amenities);
+                                for ($j=0; $j <count($amenitie_arr); $j++)
+                                {
+                                  $tem_data = App\Models\Amenity::where('id',$amenitie_arr[$j])->first();
+                                  echo $tem_data->name. ',' .'&nbsp;';
+                                }
+                              @endphp
+                            </div>
                         </div>
 
                         <div class="row mt-2">
