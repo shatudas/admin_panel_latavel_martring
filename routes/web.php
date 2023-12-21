@@ -29,6 +29,7 @@ use App\Http\Controllers\Frontend\Layout\FAQsController;
 use App\Http\Controllers\Frontend\Layout\PagesController;
 use App\Http\Controllers\Frontend\Layout\contectsController;
 use App\Http\Controllers\Frontend\Layout\SubscriberController;
+use App\Http\Controllers\Frontend\Layout\HotalRoomController;
 
 
 
@@ -49,7 +50,7 @@ Route::get('contect',[PagesController::class,'contect'])->name('contect');
 Route::get('contact_send_email',[contectsController::class,'contact_send_email'])->name('contact_send_email');
 Route::post('subscriber/send_email',[SubscriberController::class,'send_email'])->name('subscriber_send_email');
 Route::get('subscriber/varify/{email}/{token}',[SubscriberController::class,'varify'])->name('subscriber_varify');
-
+Route::get('single_room/{id}',[HotalRoomController::class,'single_room'])->name('single_room');
 //_______backend part__________//
 
 //--------admin login-------//

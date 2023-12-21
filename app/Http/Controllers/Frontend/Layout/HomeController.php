@@ -8,6 +8,7 @@ use App\Models\Slider;
 use App\Models\Feature;
 use App\Models\Testimonial;
 use App\Models\Post;
+use App\Models\Room;
 
 
 class HomeController extends Controller
@@ -18,6 +19,7 @@ class HomeController extends Controller
         $data['feature'] = Feature::where('status','0')->get();
         $data['testimonial'] = Testimonial::where('status','0')->get();
         $data['post'] = Post::where('status','0')->orderBy('id','DESC')->limit(3)->get();
+        $data['room'] = Room::where('status','0')->limit(4)->get();
         return view('front_end.layout.home',$data);
     }
 

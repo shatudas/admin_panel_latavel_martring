@@ -9,6 +9,7 @@ use App\Models\Term;
 use App\Models\Privacy;
 use App\Models\Contact;
 use App\Models\Pageheadding;
+use App\Models\Room;
 
 
 
@@ -40,11 +41,13 @@ class AppServiceProvider extends ServiceProvider
      $privacy_page = Privacy::first();
      $contact_page = Contact::first();
      $pageheading = Pageheadding::first();
+     $room_data = Room::where('status','0')->get();
      view()->share('global_page',$about_data);
      view()->share('term_page',$term_data);
      view()->share('privacy_page',$privacy_page);
      view()->share('contact_page',$contact_page);
      view()->share('pageheading',$pageheading);
+     view()->share('room_data',$room_data);
 
     }
 }
