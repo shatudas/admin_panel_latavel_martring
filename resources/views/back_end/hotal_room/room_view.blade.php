@@ -65,14 +65,18 @@
                </td>
 
                <td align="center">
-                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter" title="View Detalis">
                  <i class="fa fa-eye"></i>
                 </button>
 
-                <a title="Edit" href="{{ route('room.edit',$data->id) }}" class="btn btn-sm btn-primary">
+                <a href="{{ route('room.gallery.add',$data->id) }}" class="btn btn-sm btn-success" title="Add Room Image">
+                <i class="fa fa-plus"></i>
+                </a>
+
+                <a href="{{ route('room.edit',$data->id) }}" class="btn btn-sm btn-primary" title="Sata Edit">
                  <i class="fa fa-edit"></i>
                 </a>
-                <a title="Delete" href="{{route('room.delete',$data->id)}}" id="delete" class="btn btn-sm btn-danger">
+                <a href="{{route('room.delete',$data->id)}}" id="delete" class="btn btn-sm btn-danger" title="Data Delete">
                  <i class="fa fa-trash"></i>
                 </a>
                </td>
@@ -103,7 +107,7 @@
 
                         <div class="row mt-2">
                             <div class="col-md-4">Room Type</div>
-                            <div class="col-md-8">{{ $data->name }}</div>
+                            <div class="col-md-8"> <strong>{{ $data->name }}</strong> </div>
                         </div>
 
                         <div class="row mt-2">
@@ -118,32 +122,32 @@
 
                         <div class="row mt-2">
                             <div class="col-md-4">Total Room</div>
-                            <div class="col-md-8">{{ $data->total_room }}</div>
+                            <div class="col-md-8">{{ $data->total_room }} Room</div>
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-md-4"> Room size</div>
-                            <div class="col-md-8">{{ $data->size }}</div>
+                            <div class="col-md-8">{{ $data->size }} </div>
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-md-4"> Total Bad</div>
-                            <div class="col-md-8">{{ $data->total_bad }}</div>
+                            <div class="col-md-8">{{ $data->total_bad }} Bed</div>
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-md-4"> Bathroom</div>
-                            <div class="col-md-8">{{ $data->total_bathroom }}</div>
+                            <div class="col-md-8">{{ $data->total_bathroom }} Bathroom</div>
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-md-4"> Balconic</div>
-                            <div class="col-md-8">{{ $data->total_balconics }}</div>
+                            <div class="col-md-8">{{ $data->total_balconics }} Bathroom</div>
                         </div>
 
                         <div class="row mt-2">
                             <div class="col-md-4"> Guest</div>
-                            <div class="col-md-8">{{ $data->total_guest }}</div>
+                            <div class="col-md-8">{{ $data->total_guest }} Guest Alllow</div>
                         </div>
 
 

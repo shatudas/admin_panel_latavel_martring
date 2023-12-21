@@ -171,6 +171,13 @@ Route::get('room/active/{id}',[RoomController::class,'room_active'])->name('room
 Route::get('room/inactive/{id}',[RoomController::class,'room_inactive'])->name('room.inactive');
 Route::get('room/delete/{id}',[RoomController::class,'room_delete'])->name('room.delete');
 
+Route::get('room/gallery/add/{id}',[RoomController::class,'room_Gallery_add'])->name('room.gallery.add');
+Route::post('room/gallery/store/{id}',[RoomController::class,'room_Gallery_store'])->name('room.gallery.store');
+
+
+Route::get('room/gallery/inactive/{id}',[RoomController::class,'room_Gallery_inactive'])->name('room.gallery.inactive');
+Route::get('room/gallery/active/{id}',[RoomController::class,'room_Gallery_active'])->name('room.gallery.active');
+Route::get('room/gallery/delete/{id}',[RoomController::class,'room_Gallery_delete'])->name('room.gallery.delete');
 
 
 //---------About---------//

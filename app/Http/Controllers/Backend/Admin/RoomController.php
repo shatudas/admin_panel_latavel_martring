@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Amenity;
+use App\Models\Room_Photo;
+
 
 class RoomController extends Controller
 {
@@ -108,7 +110,7 @@ class RoomController extends Controller
 
            $amenities ='';
            $i = 0;
-   
+
            if(isset($request->amenities)){
             foreach($request->amenities as $item){
              if($i==0){
@@ -121,7 +123,7 @@ class RoomController extends Controller
             }
            }
 
-        
+
 
         if($request->hasFile('featured_photo')){
 
@@ -144,7 +146,7 @@ class RoomController extends Controller
         $data->total_balconics = $request->total_balconics;
         $data->video_id	       = $request->video_id;
         $data->status	       = $request->status;
-       
+
         $data->update();
 
         return redirect()->route('room.view')->with('success','Data Update Successfully');
@@ -166,8 +168,72 @@ class RoomController extends Controller
       $data = Room::where('id',$id)->first();
       unlink(public_path('upload/room/'.$data->featured_photo));
       $data->delete();
+
+
+      $room_photo = Room_Photo::where('room_id',$id)->get();
+
+      foreach($room_photo as $item)
+      {
+       unlink(public_path('upload/room_gallery/'.$item->photo));
+       $item->delete();
+      }
+
       return redirect()->back()->with('success','Slider Is Delated Successfully');
      }
+
+
+     public function room_Gallery_add($id){
+        $room_gallery = Room_Photo::where('room_id',$id)->get();
+        $room_val = Room::where('id',$id)->first();
+        return view('back_end.hotal_room.gallary_add',compact('room_val','room_gallery'));
+     }
+
+
+     public function room_Gallery_store(Request $request,$id){
+
+        $request->validate([
+            'status'   => 'required',
+            'photo'    => 'required|image|mimes:jpg,jpeg,png,git'
+           ]);
+
+
+           $ext        = $request->file('photo')->extension();
+           $final_name = time().'.'.$ext;
+           $request->file('photo')->move(public_path('upload/room_gallery/'),$final_name);
+
+
+           $data =new Room_Photo();
+           $data->room_id  = $id;
+           $data->status   = $request->status;
+           $data->photo    = $final_name;
+           $data->save();
+
+           return redirect()->back()->with('success','Data Added Successfully');
+     }
+
+
+    public function room_Gallery_active($id){
+        Room_Photo::find($id)->where('id',$id)->update(['status'=>0]);
+        return redirect()->back();
+    }
+
+    public function room_Gallery_inactive($id){
+        Room_Photo::find($id)->where('id',$id)->update(['status'=>1]);
+        return redirect()->back();
+    }
+
+
+    public function room_Gallery_delete($id){
+        $data = Room_Photo::where('id',$id)->first();
+        unlink(public_path('upload/room_gallery/'.$data->photo));
+        $data->delete();
+        return redirect()->back()->with('Success','Slider Is Delated Successfully');
+    }
+
+
+
+
+
 
 
 
