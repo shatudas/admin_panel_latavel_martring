@@ -225,6 +225,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="{{ route('roomheading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Room Page</p>
+                 </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{ route('photoheading.add') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Photo Page</p>

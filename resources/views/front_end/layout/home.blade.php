@@ -93,13 +93,13 @@
             </div>
         </div>
 
-        @if($room != '')
+        @if($pageheading->roomstatus ==0)
 
         <div class="home-rooms">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="main-header">Rooms and Suites</h2>
+                        <h2 class="main-header">{{ $pageheading->roomheading }}</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -125,13 +125,21 @@
                     @endforeach
 
                 </div>
+
+                @if($room->count() >= 4)
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="big-button">
-                            <a href="" class="btn btn-primary">See All Rooms</a>
+                            <a href="{{ route('room_all') }}" class="btn btn-primary">See All Rooms</a>
                         </div>
                     </div>
                 </div>
+
+                @endif
+
+
+
             </div>
         </div>
 

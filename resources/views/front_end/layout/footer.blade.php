@@ -11,16 +11,27 @@
                             <a href="{{ route('faq') }}">{{ $pageheading->faqheading }}</a>
                         </li>
                         @endif
-                        <li><a href="rooms.html">Rooms & Suites</a></li>
-                        <li><a href="photo-gallery.html">Photo Gallery</a></li>
+
+                        @if($pageheading->roomstatus ==0)
+                        <li><a href="{{ route('room_all') }}">{{ $pageheading->roomheading }}</a></li>
+                        @endif
+
+                        @if($pageheading->photostatus ==0)
+																									<li>
+																										<a href="{{ route('photo') }}">{{ $pageheading->photoheading }}</a>
+																				     </li>
+																							 @endif
+
                         @if($pageheading->faqstatus ==0)
                         <li>
                             <a href="{{ route('post') }}">{{ $pageheading->blogheading }}</a>
                         </li>
                         @endif
+
                         <li>
                             <a href="{{ route('contect') }}">Contact</a>
                         </li>
+																								
                     </ul>
                 </div>
             </div>

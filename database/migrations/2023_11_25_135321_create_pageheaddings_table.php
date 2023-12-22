@@ -31,6 +31,8 @@ class CreatePageheaddingsTable extends Migration
             $table->string('singupstatus')->nullable();
             $table->string('singheading')->nullable();
             $table->string('singstatus')->nullable();
+            $table->string('roomheading')->nullable();
+            $table->string('roomstatus')->nullable();
             $table->timestamps();
         });
     }

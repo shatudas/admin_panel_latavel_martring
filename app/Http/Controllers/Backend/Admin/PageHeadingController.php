@@ -10,10 +10,31 @@ class PageHeadingController extends Controller
 {
 
 
-						public function photoheading_add(){
-								$data['alldata']= Pageheadding::where('id',1)->first();
-								return view('back_end.pageSetup.photo_page',$data);
-						}
+    public function roomheading_add(){
+	    $data['alldata']= Pageheadding::where('id',1)->first();
+		return view('back_end.pageSetup.room_page',$data);
+    }
+
+
+    public function roomheading_update(Request $request ,$id){
+        $request->validate([
+         'roomheading' => 'required',
+         'roomstatus'  => 'required'
+         ]);
+ 
+          $data = Pageheadding::where('id',$id)->first();
+          $data->roomheading  = $request->roomheading;
+          $data->roomstatus   = $request->roomstatus;
+          $data->update();
+ 
+          return redirect()->route('roomheading.add')->with('success','Data Update Successfully');
+        }
+
+
+	public function photoheading_add(){
+	    $data['alldata']= Pageheadding::where('id',1)->first();
+		return view('back_end.pageSetup.photo_page',$data);
+    }
 
 
       public function photoheading_update(Request $request ,$id){
