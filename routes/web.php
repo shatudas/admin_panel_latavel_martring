@@ -22,6 +22,13 @@ use App\Http\Controllers\Backend\Admin\AdminSubscriberController;
 use App\Http\Controllers\Backend\Admin\AmenityController;
 use App\Http\Controllers\Backend\Admin\RoomController;
 
+
+//----------Customer--------//
+use App\Http\Controllers\Customer\CustomerAdminController;
+use App\Http\Controllers\Customer\CustomerAuthController;
+use App\Http\Controllers\Customer\CustomerProfileController;
+
+
 //----------frontend controller--------//
 use App\Http\Controllers\Frontend\Layout\HomeController;
 use App\Http\Controllers\Frontend\Layout\PostsController;
@@ -57,6 +64,23 @@ Route::get('room_all',[HotalRoomController::class,'room_all'])->name('room_all')
 
 //_______backend part__________//
 
+//------Customer-----------//
+Route::get('/login',[CustomerAuthController::class,'customer_login'])->name('customer.login');
+Route::get('/singup',[CustomerAuthController::class,'customer_singup'])->name('customer.singup');
+Route::post('/login-submit',[CustomerAuthController::class,'customer_login_submit'])->name('customer.login-submit');
+Route::get('/logout',[CustomerAuthController::class,'customer_logout'])->name('customer.logout');
+
+//------Customer middleware-----------//
+Route::group(['middleware'=>'customer:customer'],function(){
+
+ Route::get('customer/home',[CustomerAdminController::class,'customer_home'])->name('customer.home');
+ //------Customer profile-----------//
+ Route::get('customer/profile',[CustomerProfileController::class,'customer_profile'])->name('customer.profile');
+ Route::post('customer/profile/update',[CustomerProfileController::class,'customer_profile_update'])->name('customer.profile.update');
+
+});
+
+
 //--------admin login-------//
 Route::get('admin/login',[LoginController::class,'admin_login'])->name('admin.login');
 Route::get('admin/logout',[LoginController::class,'admin_logout'])->name('admin.logout');
@@ -67,10 +91,11 @@ Route::get('admin/forget-password/{token}/{email}',[LoginController::class,'rese
 Route::post('admin/reset/password',[LoginController::class,'admin_reset_password'])->name('admin.reset.password');
 
 
+//----admin middleware-------//
 Route::group(['middleware'=>'admin:admin'],function(){
 
 	//------Admin Deshboard-----------//
-	Route::get('admin/home',[AdminController::class,'admin_home'])->name('admin.home')->middleware('admin:admin');
+	Route::get('admin/home',[AdminController::class,'admin_home'])->name('admin.home');
 
 	//------profile-----------//
 	Route::get('admin/profile',[ProfileController::class,'admin_profile'])->name('admin.profile');

@@ -15,7 +15,7 @@ class AdminController extends Controller
     return view('back_end.layouts.home');
   }
 
-  
+
 
 
 }

@@ -1,33 +1,33 @@
 <div class="top">
  <div class="container">
   <div class="row">
-            
+
    <div class="col-md-6 left-side">
     <ul>
      <li class="phone-text">111-222-3333</li>
      <li class="email-text">contact@arefindev.com</li>
     </ul>
    </div>
-           
+
    <div class="col-md-6 right-side">
     <ul class="right">
-      
+
      @if($pageheading->cartstatus ==0)
        <li class="menu"><a href="">{{ $pageheading->cartheading }}</a></li>
       @endif
-					
+
       @if($pageheading->checkoutstatus ==0)
        <li class="menu"><a href="">{{ $pageheading->checkoutheading }}</a></li>
       @endif
-					
+
       @if($pageheading->singupstatus ==0)
-       <li class="menu"><a href="">{{ $pageheading->singupheading }}</a></li>
+       <li class="menu"><a href="{{ route('customer.singup') }}">{{ $pageheading->singupheading }}</a></li>
       @endif
-					
+
       @if($pageheading->singstatus ==0)
-       <li class="menu"><a href="">{{ $pageheading->singheading }}</a></li>
+       <li class="menu"><a href="{{ route('customer.login') }}">{{ $pageheading->singheading }}</a></li>
       @endif
-					
+
       </ul>
      </div>
     </div>
@@ -47,7 +47,7 @@
     <div class="main-nav">
      <div class="container">
       <nav class="navbar navbar-expand-md navbar-light">
-       
+
        <a class="navbar-brand" href="{{ route('home') }}">
         <img src="{{ asset('front_end') }}/uploads/logo.png" alt="">
       </a>
@@ -96,7 +96,7 @@
                <a href="{{ route('video') }}" class="nav-link">{{ $pageheading->videoheading }}</a>
               </li>
              @endif
-						
+
 			</ul>
           </li>
 
