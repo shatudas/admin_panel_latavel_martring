@@ -146,15 +146,35 @@ class CustomerAuthController extends Controller
 
  //-------customer forget password submit------//
  public function customer_reset_password($token, $email){
-
-    dd('ok');
-
     $customer_data =Customer::where('token',$token)->where('email',$email)->first();
     if(!$customer_data){
         return redirect()->route('customer.login');
     }
     return view('front_end.page.reset_password',compact('token','email'));
  }
+
+
+ public function customer_reset_password_submit(Request $request){
+
+    $request->validate([
+        'password'        => 'required',
+        'retype_password' =>'required|same:password'
+    ]);
+
+    $customer_data = Customer::where('token',$request->token)->where('email',$request->email)->first();
+    $customer_data->password = Hash::make($request->password);
+    $customer_data->token = '';
+    $customer_data->update();
+
+    return redirect()->route('customer.login')->with('success','Password Reset SuccessFull');
+
+
+
+
+
+
+}
+
 
 
 
