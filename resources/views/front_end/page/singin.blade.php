@@ -35,7 +35,7 @@
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary bg-website">Login</button>
-                        <a href="" class="primary-color" style="float:right;">Forget Password?</a>
+                        <a href="{{ route('customer.forget.password') }}" class="primary-color" style="float:right;">Forget Password?</a>
                     </div>
                     <div class="mb-3">
                         <a href="{{ route('customer.singup') }}" class="primary-color">New User? Make Registration</a>

@@ -67,6 +67,14 @@ Route::get('/login',[CustomerAuthController::class,'customer_login'])->name('cus
 Route::post('/login-submit',[CustomerAuthController::class,'customer_login_submit'])->name('customer.login-submit');
 Route::get('/logout',[CustomerAuthController::class,'customer_logout'])->name('customer.logout');
 
+//------Customer login password forget & reset-----------//
+Route::get('/forget-password',[CustomerAuthController::class,'customer_forgat_password'])->name('customer.forget.password');
+Route::post('/forget/password/submit',[CustomerAuthController::class,'customer_forgat_password_submit'])->name('customer.forget.password-submit');
+Route::get('/forget-password/{token}/{email}',[CustomerAuthController::class,'customer_reset_password'])->name('customer.reset.password');
+Route::post('/reset/password',[CustomerAuthController::class,'customer_reset_password_submit'])->name('customer.reset.password');
+
+
+
 //------Customer sing Up-----------//
 Route::get('/singup',[CustomerAuthController::class,'customer_singup'])->name('customer.singup');
 Route::post('/singup-submit',[CustomerAuthController::class,'customer_singup_submit'])->name('customer.singup-submit');

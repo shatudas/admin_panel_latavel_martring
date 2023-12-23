@@ -44,7 +44,6 @@ class CustomerAuthController extends Controller
     return redirect()->route('customer.login')->with('error', 'Credentials not matched');
     }
 
-
    }
 
 
@@ -109,6 +108,61 @@ class CustomerAuthController extends Controller
       return redirect()->route('customer.singup');
      }
    }
+
+
+   //---------customer forget password---------//
+   public function customer_forgat_password(){
+    return view ('front_end.page.forget_password');
+   }
+
+
+   //-------customer forget password submit------//
+   public function customer_forgat_password_submit(Request $request){
+
+    $request->validate([
+     'email'    => 'required'
+    ]);
+
+    $customer_data = Customer::where('email',$request->email)->first();
+    if(!$customer_data){
+     return redirect()->back()->with('error','Email Address Not Found!');
+    }
+
+    $token = md5('customer_reset_passowrd' . time());
+    $customer_data->token = $token;
+    $customer_data->update();
+
+    $reset_link = url('/forget-password/'.$token.'/'.$request->email);
+
+    $subject ='Reset Password';
+    $message ='Please Click  on the following link:<br>';
+    $message .= '<a href="'.$reset_link.'">Click Here</a>';
+
+    Mail::to($request->email)->send(new Websitemail($subject, $message));
+
+    return redirect()->route('customer.login')->with('success','Pleace Chack The Email & Follow There Step');
+
+  }
+
+ //-------customer forget password submit------//
+ public function customer_reset_password($token, $email){
+
+    dd('ok');
+
+    $customer_data =Customer::where('token',$token)->where('email',$email)->first();
+    if(!$customer_data){
+        return redirect()->route('customer.login');
+    }
+    return view('front_end.page.reset_password',compact('token','email'));
+ }
+
+
+
+
+
+
+
+
 
 
 }
