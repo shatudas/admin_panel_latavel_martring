@@ -21,12 +21,12 @@ class PageHeadingController extends Controller
          'roomheading' => 'required',
          'roomstatus'  => 'required'
          ]);
- 
+
           $data = Pageheadding::where('id',$id)->first();
           $data->roomheading  = $request->roomheading;
           $data->roomstatus   = $request->roomstatus;
           $data->update();
- 
+
           return redirect()->route('roomheading.add')->with('success','Data Update Successfully');
         }
 
@@ -187,8 +187,6 @@ class PageHeadingController extends Controller
        }
 
 
-
-
 						public function singin_heading_add(){
 								$data['alldata']= Pageheadding::where('id',1)->first();
 								return view('back_end.pageSetup.singin_page',$data);
@@ -210,6 +208,46 @@ class PageHeadingController extends Controller
 
          return redirect()->route('singin_heading.add')->with('success','Data Update Successfully');
        }
+
+       public function forgetpass_heading_add(){
+        $data['alldata']= Pageheadding::where('id',1)->first();
+        return view('back_end.pageSetup.forgetpassword_page',$data);
+        }
+
+       public function forgetpass_heading_update(Request $request ,$id){
+
+        $request->validate([
+        'forgerheading' => 'required'
+        ]);
+
+         $data = Pageheadding::where('id',$id)->first();
+         $data->forgerheading    = $request->forgerheading;
+
+         $data->update();
+
+         return redirect()->route('forgetpass_heading.add')->with('success','Data Update Successfully');
+       }
+
+
+       public function reset_heading_add(){
+        $data['alldata']= Pageheadding::where('id',1)->first();
+        return view('back_end.pageSetup.resetpassword_page',$data);
+        }
+
+       public function reset_heading_update(Request $request ,$id){
+
+        $request->validate([
+        'resetheading' => 'required'
+        ]);
+
+         $data = Pageheadding::where('id',$id)->first();
+         $data->resetheading    = $request->resetheading;
+
+         $data->update();
+
+         return redirect()->route('reset_heading.add')->with('success','Data Update Successfully');
+       }
+
 
 
 

@@ -251,6 +251,12 @@ Route::group(['middleware'=>'admin:admin'],function(){
 	Route::get('singin_heading/add',[PageHeadingController::class,'singin_heading_add'])->name('singin_heading.add');
 	Route::post('singin_heading/update/{id}',[PageHeadingController::class,'singin_heading_update'])->name('singin_heading.update');
 
+    Route::get('forgetpass_heading/add',[PageHeadingController::class,'forgetpass_heading_add'])->name('forgetpass_heading.add');
+	Route::post('forgetpass_heading/update/{id}',[PageHeadingController::class,'forgetpass_heading_update'])->name('forgetpass_heading.update');
+
+    Route::get('reset_heading/add',[PageHeadingController::class,'reset_heading_add'])->name('reset_heading.add');
+	Route::post('reset_heading/update/{id}',[PageHeadingController::class,'reset_heading_update'])->name('reset_heading.update');
+
 
 	//---------Page Headings---------//
 	Route::get('subscriber/show',[AdminSubscriberController::class,'subscriber_show'])->name('subscriber.show');

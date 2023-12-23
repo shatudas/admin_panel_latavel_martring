@@ -278,6 +278,18 @@
                   <p>SingIn Page</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('forgetpass_heading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Forget Page</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('reset_heading.add') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reset Page</p>
+                </a>
+              </li>
             </ul>
           </li>
 
