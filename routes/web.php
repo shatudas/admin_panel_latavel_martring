@@ -67,8 +67,12 @@ Route::get('room_all',[HotalRoomController::class,'room_all'])->name('room_all')
 //------Customer-----------//
 Route::get('/login',[CustomerAuthController::class,'customer_login'])->name('customer.login');
 Route::get('/singup',[CustomerAuthController::class,'customer_singup'])->name('customer.singup');
+Route::post('/singup-submit',[CustomerAuthController::class,'customer_singup_submit'])->name('customer.singup-submit');
 Route::post('/login-submit',[CustomerAuthController::class,'customer_login_submit'])->name('customer.login-submit');
 Route::get('/logout',[CustomerAuthController::class,'customer_logout'])->name('customer.logout');
+Route::post('/login-submit',[CustomerAuthController::class,'customer_login_submit'])->name('customer.login-submit');
+Route::get('/customer-verification/{email}/{token}',[CustomerAuthController::class,'customer_verification'])->name('customer_verification');
+
 
 //------Customer middleware-----------//
 Route::group(['middleware'=>'customer:customer'],function(){

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Mail\Websitemail;
 use Auth;
 use Hash;
-use App\Mail\Websitemail;
 
 
 class CustomerAuthController extends Controller
@@ -21,7 +21,7 @@ class CustomerAuthController extends Controller
     public function customer_login_submit(Request $request){
 
         $request->validate([
-            'email'    => 'required|email',
+            'email'    => 'required|email|',
             'password' =>'required'
         ]);
 
@@ -49,6 +49,60 @@ class CustomerAuthController extends Controller
         Auth::guard('customer')->logout();
         return redirect()->route('home');
     }
+
+
+    public function customer_singup_submit(Request $request){
+
+        $request->validate([
+            'name'             =>'required',
+            'email'            =>'required|email|unique:customers',
+            'password'         => 'required',
+            'retype_password'  =>'required|same:password'
+        ]);
+
+        $password = Hash::make($request->password);
+        $token = md5('resetpassowrd' . time());
+
+        $reset_link = url('/customer-verification/'.$request->email.'/'.$token);
+
+        $data =new Customer();
+        $data->name     = $request->name;
+        $data->email    = $request->email;
+        $data->password	= $password;
+        $data->token	= $token;
+        $data->status	= 1;
+        $data->save();
+
+        $subject ='Sing Up Verification';
+        $message ='Please Click  on the following link to Confirm sing Up process:<br>';
+        $message .= '<a href="'.$reset_link.'">Click Here</a>';
+
+        \Mail::to($request->email)->send(new Websitemail($subject, $message));
+        return redirect()->back()->with('success','To Complate the singup, Please Check your email & click the link');
+
+    }
+
+
+    public function customer_verification($email, $token ){
+
+
+    $varification_data = Customer::where('token',$token)->where('email',$email)->first();
+
+     if($varification_data){
+       $varification_data->token  = '';
+       $varification_data->status = '0';
+       $varification_data->update();
+
+       return redirect()->route('customer.login')->with('success','Your Accounts Is Verficat');
+
+     }else{
+      return redirect()->route('customer.singup');
+     }
+
+
+   }
+
+
 
 
 }
