@@ -42,8 +42,6 @@ use App\Http\Controllers\Frontend\Layout\HotalRoomController;
 
 
 
-
-
 //_______frontend end__________//
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('post',[PostsController::class,'post'])->name('post');
@@ -64,20 +62,23 @@ Route::get('room_all',[HotalRoomController::class,'room_all'])->name('room_all')
 
 //_______backend part__________//
 
-//------Customer-----------//
+//------Customer login-----------//
 Route::get('/login',[CustomerAuthController::class,'customer_login'])->name('customer.login');
-Route::get('/singup',[CustomerAuthController::class,'customer_singup'])->name('customer.singup');
-Route::post('/singup-submit',[CustomerAuthController::class,'customer_singup_submit'])->name('customer.singup-submit');
 Route::post('/login-submit',[CustomerAuthController::class,'customer_login_submit'])->name('customer.login-submit');
 Route::get('/logout',[CustomerAuthController::class,'customer_logout'])->name('customer.logout');
-Route::post('/login-submit',[CustomerAuthController::class,'customer_login_submit'])->name('customer.login-submit');
+
+//------Customer sing Up-----------//
+Route::get('/singup',[CustomerAuthController::class,'customer_singup'])->name('customer.singup');
+Route::post('/singup-submit',[CustomerAuthController::class,'customer_singup_submit'])->name('customer.singup-submit');
 Route::get('/customer-verification/{email}/{token}',[CustomerAuthController::class,'customer_verification'])->name('customer_verification');
 
 
 //------Customer middleware-----------//
 Route::group(['middleware'=>'customer:customer'],function(){
 
+ //------Customer Deshboard-----------//
  Route::get('customer/home',[CustomerAdminController::class,'customer_home'])->name('customer.home');
+
  //------Customer profile-----------//
  Route::get('customer/profile',[CustomerProfileController::class,'customer_profile'])->name('customer.profile');
  Route::post('customer/profile/update',[CustomerProfileController::class,'customer_profile_update'])->name('customer.profile.update');

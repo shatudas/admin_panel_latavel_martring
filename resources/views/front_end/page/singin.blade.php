@@ -16,23 +16,35 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-4">
+
+                <form action="{{ route('customer.login-submit') }}" method="post">
+                    @csrf
+
                 <div class="login-form">
                     <div class="mb-3">
-                        <label for="" class="form-label">Email Address</label>
-                        <input type="text" class="form-control">
+                        <label for="name" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" name="email">
+                        <font style="color:red">{{($errors->has('email'))?($errors->first('email')):'' }}</font>
+
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Password</label>
-                        <input type="password" class="form-control">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password">
+                        <font style="color:red">{{($errors->has('password'))?($errors->first('password')):'' }}</font>
+
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary bg-website">Login</button>
-                        <a href="forget-password.html" class="primary-color">Forget Password?</a>
+                        <a href="" class="primary-color" style="float:right;">Forget Password?</a>
                     </div>
                     <div class="mb-3">
                         <a href="{{ route('customer.singup') }}" class="primary-color">New User? Make Registration</a>
                     </div>
                 </div>
+
+               </form>
+
+
             </div>
         </div>
     </div>

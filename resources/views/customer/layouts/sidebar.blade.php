@@ -13,7 +13,7 @@
           <img src="{{ (!empty(Auth::guard('customer')->user()->photo))?url('upload/customer/profile/'.Auth::guard('customer')->Customer()->photo):url('upload/no_image.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="{{ route('customer.profile') }}" class="d-block">{{ Auth::guard('customer')->Customer()->name }}</a>
+          <a href="{{ route('customer.profile') }}" class="d-block">{{ Auth::guard('customer')->user()->name }}</a>
         </div>
       </div>
 
