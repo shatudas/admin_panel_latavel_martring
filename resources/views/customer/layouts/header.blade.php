@@ -32,8 +32,11 @@
 
      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
        <div class="dropdown-divider"></div>
-        <a href="{{ route('customer.profile') }}" class="dropdown-item">
+        <a href="{{ route('customer.home') }}" class="dropdown-item">
          <i class="fas fa-user mr-2"></i> {{ Auth::guard('customer')->user()->name }}
+        </a>
+        <a href="{{ route('customer.profile') }}" class="dropdown-item">
+         <i class="fas fa-edit mr-2"></i> Edit Profile
         </a>
         <div class="dropdown-divider"></div>
          <a href="{{ route('customer.logout') }}" class="dropdown-item">

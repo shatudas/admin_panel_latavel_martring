@@ -4,10 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Customer Admin Panel</title>
-
   <!-----include link------>
   @include('back_end.layouts.link.headerLink')
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -15,23 +13,20 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('back_end') }}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+   <img class="animation__shake" src="{{ asset('back_end') }}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
-
 
   <!-----include header----->
   @include('customer.layouts.header')
 
- <!-----include header----->
+  <!-----include header----->
   @include('customer.layouts.sidebar')
-
 
   @yield('customer_content')
 
-
   <footer class="main-footer">
-    <strong>Copyright &copy; {{ date('Y') }}<a href="#"></a>.</strong>
-    All rights reserved.
+   <strong>Copyright &copy; {{ date('Y') }}<a href="#"></a>.</strong>
+   All rights reserved.
   </footer>
 
   <aside class="control-sidebar control-sidebar-dark"></aside>
@@ -39,44 +34,42 @@
 </div>
 
 
-@if($errors->any())
-	@foreach($errors->all() as $error)
-					<script>
-					iziToast.error({
-									title: '',
-									position: 'topRight',
-									message: '{{ $error }}',
-									});
-					</script>
-	@endforeach
-@endif
+ @if($errors->any())
+  @foreach($errors->all() as $error)
+   <script>
+    iziToast.error({
+     title: '',
+     position: 'topRight',
+     message: '{{ $error }}',
+    });
+   </script>
+  @endforeach
+ @endif
 
 
-@if(session()->get('error'))
-	<script>
-					iziToast.error({
-									title: '',
-									position: 'topRight',
-									message: '{{ session()->get('error') }}',
-									});
-	</script>
-@endif
+ @if(session()->get('error'))
+  <script>
+   iziToast.error({
+    title: '',
+    position: 'topRight',
+    message: '{{ session()->get('error') }}',
+   });
+  </script>
+ @endif
 
 
-@if(session()->get('success'))
-	<script>
-					iziToast.error({
-									title: '',
-									position: 'topRight',
-									message: '{{ session()->get('success') }}',
-									});
-	</script>
-@endif
-
+ @if(session()->get('success'))
+  <script>
+   iziToast.error({
+			title: '',
+			position: 'topRight',
+			message: '{{ session()->get('success') }}',
+		 });
+	 </script>
+ @endif
 
  <!--include foote link-->
  @include('customer.layouts.link.footerLink')
-
 
    <script type="text/javascript">
     $(document).ready(function(){
@@ -118,18 +111,14 @@
    </script>
 
     <script>
-        $(function () {
-        // Summernote
-        $('#summernote').summernote()
-
-        // CodeMirror
-        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-            mode: "htmlmixed",
-            theme: "monokai"
-        });
-        })
+     $(function () {
+     $('#summernote').summernote()
+     CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+     mode: "htmlmixed",
+     theme: "monokai"
+      });
+     })
     </script>
-
 
 </body>
 </html>
