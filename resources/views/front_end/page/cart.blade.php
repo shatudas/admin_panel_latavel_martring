@@ -18,6 +18,12 @@
         <div class="row cart">
             <div class="col-md-12">
 
+                @if (blank(session('cart_room_id')))
+
+               <h2> <center>Data Not Available</center> </h2>
+
+                @else
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-cart">
                         <thead>
@@ -35,84 +41,90 @@
                         </thead>
 
                         <tbody>
-                        @php
 
-                         $arr_cart_room_id= array();
-                           $i = 0;
-                           foreach(session()->get('cart_room_id') as $value){
-                               $arr_cart_room_id[$i] = $value;
-                               $i++;
-                           }
+                            @php
+                            $arr_cart_room_id = session()->get('cart_room_id');
+                            $arr_cart_checkin_data = session()->get('cart_checkin_data');
+                            $arr_cart_checkout_data = session()->get('cart_checkout_data');
+                            $arr_cart_adults = session()->get('cart_adults');
+                            $arr_cart_children = session()->get('cart_children');
 
-                          $arr_cart_checkin_data= array();
-                          $i = 0;
-                          foreach(session()->get('cart_checkin_data') as $value){
-                           $arr_cart_checkin_data[$i] = $value;
-                           $i++;
-                          }
-
-                          $arr_cart_checkout_data= array();
-                          $i = 0;
-                          foreach(session()->get('cart_checkout_data') as $value){
-                           $arr_cart_checkout_data[$i] = $value;
-                           $i++;
-                          }
-
-                          $arr_cart_adults= array();
-                          $i = 0;
-                          foreach(session()->get('cart_adults') as $value){
-                           $arr_cart_adults[$i] = $value;
-                           $i++;
-                          }
-
-                          $arr_cart_children= array();
-                          $i = 0;
-                          foreach(session()->get('cart_children') as $value){
-                           $arr_cart_children[$i] = $value;
-                           $i++;
-                          }
-
-                      @endphp
-
-
-                    @php
-                    for ($i = 0; $i < count($arr_cart_room_id); $i++) {
-                     $data = DB::table('rooms')->where('id',$arr_cart_room_id[$i])->first();
-                    @endphp
-
-                    <tr>
-                     <td>
-                      <a href="" class="cart-delete-link" onclick="return confirm('Are you sure?');"><i class="fa fa-times"></i></a>
-                     </td>
-                     <td>1</td>
-                     <td><img src="{{ asset('upload/room/'.$data->featured_photo) }}"></td>
-                     <td>
-                      <a href="room-detail.html" class="room-name">{{ $data->name }}</a>
-                     </td>
-                     <td>{{ $data->price }} TK </td>
-                     <td>{{ $arr_cart_checkin_data[$i] }}</td>
-                     <td>{{ $arr_cart_checkout_data[$i] }}</td>
-                     <td>
-                      Adult: {{ $arr_cart_adults[$i] }}<br>
-                      Children: {{ $arr_cart_children[$i] }}
-                     </td>
-                     <td>$60</td>
-                    </tr>
-
-                    @php
-                    }
-                    @endphp
+                            $total_price = 0;
+                            @endphp
 
 
 
-                  </tbody>
+                            @for ($i = 0; $i < count($arr_cart_room_id); $i++)
+                                @php
+                                $data = DB::table('rooms')->where('id', $arr_cart_room_id[$i])->first();
+                                $d1 = explode('/', $arr_cart_checkin_data[$i]);
+                                $d2 = explode('/', $arr_cart_checkout_data[$i]);
+
+                                $d1_new = $d1[2] . '-' . $d1[1] . '-' . $d1[0];
+                                $d1_new_replace= str_replace(' ', '', $d1_new);
+
+
+                                $d2_new = $d2[2] . '-' . $d2[1] . '-' . $d2[0];
+                                $d2_new_replace= str_replace(' ', '', $d2_new);
+
+                                $t1 = strtotime($d1_new_replace);
+                                $t2 = strtotime($d2_new_replace);
+                                $diff = ($t2 - $t1) / 60 / 60 / 24;
+                                @endphp
+
+                                <tr>
+                                    <td>
+                                        <a href="#" class="cart-delete-link" onclick="return confirm('Are you sure?');"><i class="fa fa-times"></i></a>
+                                    </td>
+                                    <td>1</td>
+                                    <td><img src="{{ asset('upload/room/'.$data->featured_photo) }}"></td>
+                                    <td>
+                                        <a href="{{ route('single_room',$data->id) }}" class="room-name">{{ $data->name }}</a>
+                                    </td>
+                                    <td>{{ $data->price }} TK </td>
+                                    <td>{{ $arr_cart_checkin_data[$i] }}</td>
+                                    <td>{{ $arr_cart_checkout_data[$i] }}</td>
+                                    <td>
+                                        Adult: {{ $arr_cart_adults[$i] }}<br>
+                                        Children: {{ $arr_cart_children[$i] }}
+                                    </td>
+                                    <td>
+
+                                        Tk{{ $data->price * $diff }}
+                                    </td>
+                                </tr>
+
+                                @php
+                                    $total_price = $total_price + ($data->price * $diff );
+
+                                @endphp
+
+
+
+                            @endfor
+
+                            <tr>
+                                <td colspan="8">Total</td>
+                                <td>{{ $total_price }} TK </td>
+                            </tr>
+
+
+                        </tbody>
+
+
 
                   </table>
                 </div>
 
+
                 <div class="checkout mb_20">
                     <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
                 </div>
+
+
+                @endif
+
+
 
             </div>
         </div>
