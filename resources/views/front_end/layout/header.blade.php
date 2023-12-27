@@ -13,7 +13,7 @@
     <ul class="right">
 
      @if($pageheading->cartstatus ==0)
-       <li class="menu"><a href="">{{ $pageheading->cartheading }}</a></li>
+       <li class="menu"><a href="{{ route('cart') }}">{{ $pageheading->cartheading }}</a></li>
       @endif
 
       @if($pageheading->checkoutstatus ==0)

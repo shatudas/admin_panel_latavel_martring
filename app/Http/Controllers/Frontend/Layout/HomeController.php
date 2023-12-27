@@ -20,6 +20,7 @@ class HomeController extends Controller
         $data['testimonial'] = Testimonial::where('status','0')->get();
         $data['post'] = Post::where('status','0')->orderBy('id','DESC')->limit(3)->get();
         $data['room'] = Room::where('status','0')->limit(4)->get();
+        $data['roomcart'] = Room::where('status','0')->get();
         return view('front_end.layout.home',$data);
     }
 

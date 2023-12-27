@@ -39,6 +39,7 @@ use App\Http\Controllers\Frontend\Layout\PagesController;
 use App\Http\Controllers\Frontend\Layout\contectsController;
 use App\Http\Controllers\Frontend\Layout\SubscriberController;
 use App\Http\Controllers\Frontend\Layout\HotalRoomController;
+use App\Http\Controllers\Frontend\Layout\BookingController;
 
 
 
@@ -58,6 +59,8 @@ Route::post('subscriber/send_email',[SubscriberController::class,'send_email'])-
 Route::get('subscriber/varify/{email}/{token}',[SubscriberController::class,'varify'])->name('subscriber_varify');
 Route::get('single_room/{id}',[HotalRoomController::class,'single_room'])->name('single_room');
 Route::get('room_all',[HotalRoomController::class,'room_all'])->name('room_all');
+Route::post('/booking/submit',[BookingController::class,'cart_submit'])->name('booking.submit');
+Route::get('/cart',[BookingController::class,'cart_page'])->name('cart');
 
 
 //_______backend part__________//
