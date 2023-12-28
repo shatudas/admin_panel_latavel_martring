@@ -52,12 +52,12 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="number" name="adults" class="form-control" min="1" max="30" placeholder="Adults">
+                                <input type="number" name="adults" class="form-control" min="1" max="5" placeholder="Adults">
                             </div>
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                <input type="number" name="children" class="form-control" min="0" max="30" placeholder="Children">
+                                <input type="number" name="children" class="form-control" min="0" max="5" placeholder="Children">
                             </div>
                         </div>
                         <div class="col-lg-2">

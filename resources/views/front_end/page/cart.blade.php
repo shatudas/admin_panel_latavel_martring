@@ -83,7 +83,7 @@
                                     </td>
                                     <td>
 
-                                        Tk{{ $data->price * $diff }}
+                                        {{ $data->price * $diff }} Tk
                                     </td>
                                 </tr>
 
@@ -95,7 +95,7 @@
 
                             <tr>
                                 <td colspan="8">Total</td>
-                                <td>{{ $total_price }} TK </td>
+                                <td >{{ $total_price }} TK </td>
                             </tr>
 
                         </tbody>
