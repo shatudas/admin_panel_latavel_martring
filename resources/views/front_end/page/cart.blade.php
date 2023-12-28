@@ -18,11 +18,7 @@
         <div class="row cart">
             <div class="col-md-12">
 
-                @if (blank(session('cart_room_id')))
-
-               <h2> <center>Data Not Available</center> </h2>
-
-                @else
+              @if(session()->has('cart_room_id'))
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-cart">
@@ -52,8 +48,6 @@
                             $total_price = 0;
                             @endphp
 
-
-
                             @for ($i = 0; $i < count($arr_cart_room_id); $i++)
                                 @php
                                 $data = DB::table('rooms')->where('id', $arr_cart_room_id[$i])->first();
@@ -62,7 +56,6 @@
 
                                 $d1_new = $d1[2] . '-' . $d1[1] . '-' . $d1[0];
                                 $d1_new_replace= str_replace(' ', '', $d1_new);
-
 
                                 $d2_new = $d2[2] . '-' . $d2[1] . '-' . $d2[0];
                                 $d2_new_replace= str_replace(' ', '', $d2_new);
@@ -74,9 +67,9 @@
 
                                 <tr>
                                     <td>
-                                        <a href="#" class="cart-delete-link" onclick="return confirm('Are you sure?');"><i class="fa fa-times"></i></a>
+                                        <a href="{{ route('cart.delete',$arr_cart_room_id[$i]) }}" class="cart-delete-link" onclick="return confirm('Are you sure Cart Delete ?');"><i class="fa fa-times"></i></a>
                                     </td>
-                                    <td>1</td>
+                                    <td>{{ $i+1 }}</td>
                                     <td><img src="{{ asset('upload/room/'.$data->featured_photo) }}"></td>
                                     <td>
                                         <a href="{{ route('single_room',$data->id) }}" class="room-name">{{ $data->name }}</a>
@@ -95,11 +88,8 @@
                                 </tr>
 
                                 @php
-                                    $total_price = $total_price + ($data->price * $diff );
-
+                                 $total_price = $total_price + ($data->price * $diff );
                                 @endphp
-
-
 
                             @endfor
 
@@ -108,22 +98,20 @@
                                 <td>{{ $total_price }} TK </td>
                             </tr>
 
-
                         </tbody>
-
-
 
                   </table>
                 </div>
-
 
                 <div class="checkout mb_20">
                     <a href="checkout.html" class="btn btn-primary bg-website">Checkout</a>
                 </div>
 
+                @else
 
-                @endif
+                <h5> <center>Data Not Available</center> </h5>
 
+              @endif
 
 
             </div>

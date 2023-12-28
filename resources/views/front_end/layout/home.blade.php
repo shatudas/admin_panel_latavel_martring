@@ -113,7 +113,7 @@
                             <div class="text">
                                 <h2><a href="">{{ $data->name }}</a></h2>
                                 <div class="price">
-                                    $ {{ $data->price }} /night
+                                    TK {{ $data->price }} /night
                                 </div>
                                 <div class="button">
                                     <a href="{{ route('single_room',$data->id) }}" class="btn btn-primary">See Detail</a>
