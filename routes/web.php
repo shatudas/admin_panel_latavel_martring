@@ -62,6 +62,7 @@ Route::get('room_all',[HotalRoomController::class,'room_all'])->name('room_all')
 Route::post('/booking/submit',[BookingController::class,'cart_submit'])->name('booking.submit');
 Route::get('/cart',[BookingController::class,'cart_page'])->name('cart');
 Route::get('/cart/delete/{id}',[BookingController::class,'cart_delete'])->name('cart.delete');
+Route::get('/checkout',[BookingController::class,'checkout_page'])->name('checkout');
 
 
 //_______backend part__________//

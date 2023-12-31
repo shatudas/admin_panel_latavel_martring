@@ -17,7 +17,7 @@
       @endif
 
       @if($pageheading->checkoutstatus ==0)
-       <li class="menu"><a href="">{{ $pageheading->checkoutheading }}</a></li>
+       <li class="menu"><a href="{{ route('checkout') }}">{{ $pageheading->checkoutheading }}</a></li>
       @endif
 
       @if($pageheading->singupstatus ==0)

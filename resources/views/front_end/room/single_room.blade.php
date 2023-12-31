@@ -3,14 +3,14 @@
 @section('frontend_content')
 
 <div class="page-top">
-    <div class="bg"></div>
+  <div class="bg"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h2>Room: {{ $room_detali->name }}</h2>
             </div>
         </div>
-    </div>
+   </div>
 </div>
 
 
@@ -20,9 +20,11 @@
             <div class="col-lg-8 col-md-7 col-sm-12 left">
 
                 <div class="room-detail-carousel owl-carousel">
-                    <div class="item" style="background-image:url({{ asset('upload/room/'.$room_detali->featured_photo) }});">
+
+                 <div class="item" style="background-image:url({{ asset('upload/room/'.$room_detali->featured_photo) }});">
                         <div class="bg"></div>
                     </div>
+
                     @foreach ($room_detali->roomGallery as $item)
                     <div class="item" style="background-image:url({{ asset('upload/room_gallery/'.$item->photo) }});">
                         <div class="bg"></div>
@@ -100,6 +102,7 @@
 
 
             </div>
+
             <div class="col-lg-4 col-md-5 col-sm-12 right">
 
                 <div class="sidebar-container" id="sticky_sidebar">
@@ -141,6 +144,8 @@
 
 
             </div>
+
+
         </div>
     </div>
 </div>
