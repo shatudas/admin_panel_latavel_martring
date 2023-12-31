@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend\Layout;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Customer;
+use Auth;
 
 class BookingController extends Controller
 {
@@ -34,9 +36,6 @@ class BookingController extends Controller
     public function cart_page(){
      return view('front_end.page.cart');
     }
-
-
-
 
     public function cart_delete($id) {
         $arr_cart_room_id       = session()->get('cart_room_id', []);
@@ -74,6 +73,16 @@ class BookingController extends Controller
 
 
     public function checkout_page(){
+        if(!Auth::guard('customer')->check())
+        {
+            return redirect()->back()->with('error', 'You most habe to login in order cart');
+        }
+
+        if(!session()->has('cart_room_id')){
+            return redirect()->back()->with('error', 'There is no item in the cart');
+        }
+
+
         return view('front_end.page.checkout');
     }
 

@@ -19,42 +19,47 @@
         <div class="row">
             <div class="col-lg-8 col-md-6 checkout-left">
 
-                <form action="" method="post" class="frm_checkout" _lpchecked="1">
+                <form action="" method="post" class="frm_checkout">
+
                     <input type="hidden" name="ff__checkout" value="1">
+
                     <div class="billing-info">
                         <h4 class="mb_30">Billing Information</h4>
                         <div class="row">
+
                             <div class="col-lg-6">
                                 <label for="">Name:</label>
-                                <input type="text" class="form-control mb_15" name="billing_name" value="Patrick Henderson">
+                                <input type="text" class="form-control mb_15" name="name" value="{{ Auth::guard('customer')->user()->name }}">
                             </div>
+
                             <div class="col-lg-6">
                                 <label for="">Email Address:</label>
-                                <input type="text" class="form-control mb_15" name="billing_email" value="patrick@gmail.com">
+                                <input type="text" class="form-control mb_15" name="email" value="{{ Auth::guard('customer')->user()->email }}">
                             </div>
+
                             <div class="col-lg-6">
                                 <label for="">Phone Number:</label>
-                                <input type="text" class="form-control mb_15" name="billing_phone" value="">
+                                <input type="text" class="form-control mb_15" name="phone" value="{{ Auth::guard('customer')->user()->phone }}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="">Country:</label>
-                                <input type="text" class="form-control mb_15" name="billing_country" value="">
+                                <input type="text" class="form-control mb_15" name="country" value="{{ Auth::guard('customer')->user()->country }}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="">Address:</label>
-                                <input type="text" class="form-control mb_15" name="billing_address" value="">
+                                <input type="text" class="form-control mb_15" name="address" value="{{ Auth::guard('customer')->user()->address }}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="">State:</label>
-                                <input type="text" class="form-control mb_15" name="billing_state" value="">
+                                <input type="text" class="form-control mb_15" name="state" value="{{ Auth::guard('customer')->user()->state }}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="">City:</label>
-                                <input type="text" class="form-control mb_15" name="billing_city" value="">
+                                <input type="text" class="form-control mb_15" name="city" value="{{ Auth::guard('customer')->user()->city }}">
                             </div>
                             <div class="col-lg-6">
                                 <label for="">Zip Code:</label>
-                                <input type="text" class="form-control mb_15" name="billing_zip" value="">
+                                <input type="text" class="form-control mb_15" name="zip" value="{{ Auth::guard('customer')->user()->zip }}">
                             </div>
                         </div>
                     </div>

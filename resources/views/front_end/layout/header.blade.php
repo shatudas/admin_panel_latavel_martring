@@ -20,12 +20,19 @@
        <li class="menu"><a href="{{ route('checkout') }}">{{ $pageheading->checkoutheading }}</a></li>
       @endif
 
-      @if($pageheading->singupstatus ==0)
-       <li class="menu"><a href="{{ route('customer.singup') }}">{{ $pageheading->singupheading }}</a></li>
-      @endif
 
-      @if($pageheading->singstatus ==0)
-       <li class="menu"><a href="{{ route('customer.login') }}">{{ $pageheading->singheading }}</a></li>
+      @if(!Auth::guard('customer')->check())
+
+        @if($pageheading->singupstatus ==0)
+        <li class="menu"><a href="{{ route('customer.singup') }}">{{ $pageheading->singupheading }}</a></li>
+        @endif
+
+        @if($pageheading->singstatus ==0)
+        <li class="menu"><a href="{{ route('customer.login') }}">{{ $pageheading->singheading }}</a></li>
+        @endif
+
+      @else
+       <li class="menu"><a href="{{ route('customer.home') }}">Dashboard</a></li>
       @endif
 
       </ul>
