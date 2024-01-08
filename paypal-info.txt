@@ -1,0 +1,25 @@
+Developer Account
+Email: hotelbooking1234@gmail.com
+Password: hotel##$$@@
+
+Paypall Login: https://www.sandbox.paypal.com
+
+SendBox -Personal:
+Email: hotel_sendbook@per.com
+Password: hotel##$$@@##
+
+SendBox -Business:
+Email: hotel_sendbook@bus.com
+Password: hotel##$$@@##
+
+API Credentaial:
+
+App Name: Hotel_Booking
+
+
+Client ID: AQSweyOPbTynemvLhV-8rGdq7lJlkDfmb9p0i9W9x8ahQnPqIGkSrIMaxOegl0d3HBg3F_iNQgl2Kjp0
+Secret key: EOE1767W-YtL5s0MWepFKQtMCfHJjDiCUyH0UwwSRa5uwmAUeqXsCPtuSO7jYhBK1e4BDkh02IsA9oia
+
+
+
+  Sr. Technician

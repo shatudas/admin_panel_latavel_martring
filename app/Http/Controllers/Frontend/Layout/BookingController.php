@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Frontend\Layout;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Models\Customer;
 use Auth;
+
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\Transaction;
 
 class BookingController extends Controller
 {
@@ -120,6 +125,58 @@ class BookingController extends Controller
 
         return view('front_end.page.payment');
     }
+
+
+    public function paypal(){
+
+        $client = 'AQSweyOPbTynemvLhV-8rGdq7lJlkDfmb9p0i9W9x8ahQnPqIGkSrIMaxOegl0d3HBg3F_iNQgl2Kjp0';
+        $secret = 'EOE1767W-YtL5s0MWepFKQtMCfHJjDiCUyH0UwwSRa5uwmAUeqXsCPtuSO7jYhBK1e4BDkh02IsA9oia';
+        $final_price ='5';
+
+        $apiContext = new \PayPal\Rest\ApiContext(
+            new \PayPal\Auth\OAuthTokenCredential(
+                $client, // ClientID
+                $secret // ClientSecret
+            )
+        );
+
+        $paymentId = request('paymentId');
+        $payment = Payment::get($paymentId, $apiContext);
+
+        $execution = new PaymentExecution();
+        $execution->setPayerId(request('PayerID'));
+
+        $transaction = new Transaction();
+        $amount  = new Amount();
+        $details = new Details();
+
+        $details->setShipping(0)
+            ->setTax(0)
+            ->setSubtotal($final_price);
+
+        $amount->setCurrency('USD');
+        $amount->setTotal($final_price);
+        $amount->setDetails($details);
+        $transaction->setAmount($amount);
+
+        $execution->addTransaction($transaction);
+        $result = $payment->execute($execution, $apiContext);
+
+        if($result->state == 'approved')
+        {
+            $paid_amount = $result->transactions[0]->amount->total;
+        }
+
+
+    }
+
+
+
+
+
+
+
+
 
 
 
