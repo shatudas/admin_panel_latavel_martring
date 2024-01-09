@@ -127,11 +127,11 @@ class BookingController extends Controller
     }
 
 
-    public function paypal(){
+    public function paypal($final_price){
 
         $client = 'AQSweyOPbTynemvLhV-8rGdq7lJlkDfmb9p0i9W9x8ahQnPqIGkSrIMaxOegl0d3HBg3F_iNQgl2Kjp0';
         $secret = 'EOE1767W-YtL5s0MWepFKQtMCfHJjDiCUyH0UwwSRa5uwmAUeqXsCPtuSO7jYhBK1e4BDkh02IsA9oia';
-        $final_price ='5';
+
 
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
@@ -165,6 +165,10 @@ class BookingController extends Controller
         if($result->state == 'approved')
         {
             $paid_amount = $result->transactions[0]->amount->total;
+            return redirect()->route('customer.home')->with('success', 'Payment Is Successfull');
+        }
+        else{
+            return redirect()->back()->with('error', 'Payment Is Failed');
         }
 
 

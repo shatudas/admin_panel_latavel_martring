@@ -69,7 +69,7 @@
 
             <div class="col-md-6 mt-3">
              <smail for="size"><b>size</b></smail>
-             <input type="text" name="size" class="form-control form-control-sm" value="{{ $room_val->size }}" placeholder="Room Size">
+             <input type="text" name="size" class="form-control form-control-sm" value="{{ $room_val->size }}" placeholder="Room Size USD Doller">
             </div>
 
             <div class="col-md-6 mt-3">
@@ -115,7 +115,7 @@
             <div class="col-md-12 mt-3">
              <smail for="amenities"><b>Amenities</b></smail><br>
              <div class="btn-group btn-sm" role="group" aria-label="Basic checkbox toggle button group mt-2">
-              
+
               @php
                $i=0;
               @endphp
@@ -144,7 +144,7 @@
             </div>
 
 
-												
+
             <div class="col-md-6 mt-3">
              <smail for="image">Image</smail>
              <input type="file" name="featured_photo" id="image" class="form-control form-control-sm">
@@ -154,7 +154,7 @@
              <div class="col-md-3 mt-3">
               <img id="showImage" src="{{!empty($room_val->featured_photo)?url('upload/room/'.$room_val->featured_photo):url('upload/no_image.png')}}" style="width:100%; height:120px; border:1px solid #CCC;">
              </div>
-      
+
 
             <div class="col-md-3 mt-3">
                 <iframe width="200" height="120" src="https://www.youtube.com/embed/{{ $room_val->video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

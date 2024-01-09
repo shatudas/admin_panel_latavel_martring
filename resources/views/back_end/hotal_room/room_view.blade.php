@@ -53,7 +53,7 @@
                 {{ $data->name }}
                </td>
                <td>
-                {{ $data->price }} BDT
+                $ {{ $data->price }} USD
                </td>
 
                <td align="center">
@@ -117,7 +117,7 @@
 
                         <div class="row mt-2">
                             <div class="col-md-4">Price <small> (Par Night)</small></div>
-                            <div class="col-md-8"><b>{{ $data->price }} </b> <small>BDT</small> </div>
+                            <div class="col-md-8"><b>$ {{ $data->price }} </b> <small>USD</small> </div>
                         </div>
 
                         <div class="row mt-2">

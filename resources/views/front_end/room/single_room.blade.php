@@ -113,7 +113,7 @@
                         <div class="widget">
                             <h2>Room Price per Night</h2>
                             <div class="price">
-                                {{ $room_detali->price }} <small>TK BDT</small>
+                               $ {{ $room_detali->price }} <small>USD</small>
                             </div>
                         </div>
                         <div class="widget">

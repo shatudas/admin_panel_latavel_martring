@@ -49,7 +49,7 @@
 
             <div class="col-md-6 mt-3">
              <smail for="price"><b>Price</b></smail>
-             <input type="number" name="price" class="form-control form-control-sm" placeholder="Enter Price">
+             <input type="number" name="price" class="form-control form-control-sm" placeholder="Enter Price USD Doller">
              <font style="color:red">{{($errors->has('price'))?($errors->first('price')):'' }}</font>
             </div>
 
