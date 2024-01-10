@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Frontend\Layout;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
-use Auth;
-
+use App\Models\OrderDetail;
+use App\Models\Order;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use Auth;
+use DB;
 
 class BookingController extends Controller
 {
@@ -165,6 +167,43 @@ class BookingController extends Controller
         if($result->state == 'approved')
         {
             $paid_amount = $result->transactions[0]->amount->total;
+            $order_no = md5(time());
+
+            $statement = DB::select("SHOW TABLE STATUS LIKE 'orders' ");
+            $auto_id = $statement[0]->Auto_increment;
+
+            $obj = new Order();
+            $obj->customer_id    = Auth::guard('customer')->user()->id;
+            $obj->order_no       = $order_no;
+            $obj->transaction_id = $result->id;
+            $obj->payment_method = 'PayPal';
+            $obj->paid_amount    = $paid_amount;
+            $obj->booking_date   = date('d/m/Y');
+            $obj->status         = 'Complated';
+            $obj->save();
+
+            $arr_cart_room_id       = session()->get('cart_room_id', []);
+            $arr_cart_checkin_data  = session()->get('cart_checkin_data', []);
+            $arr_cart_checkout_data = session()->get('cart_checkout_data', []);
+            $arr_cart_adults        = session()->get('cart_adults', []);
+            $arr_cart_children      = session()->get('cart_children', []);
+
+
+            for($i=0; $i<count($arr_cart_room_id); $i++){
+
+                $object = new OrderDetail();
+                $object->order_id      = $auto_id;
+                $object->room_id       = $arr_cart_room_id[$i];
+                $object->order_no      = $order_no;
+                $object->checking_date = $arr_cart_checkin_data[$i];
+                $object->checkout_date = $arr_cart_checkout_data[$i];
+                $object->adult         = $arr_cart_adults[$i];
+                $object->children      = $arr_cart_children[$i];
+                $object->subtotal      = '';
+                $object->save();
+
+            }
+
             return redirect()->route('customer.home')->with('success', 'Payment Is Successfull');
         }
         else{
