@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\OrderDetail;
 use App\Models\Order;
+use App\Models\Room;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Payment;
@@ -191,6 +192,22 @@ class BookingController extends Controller
 
             for($i=0; $i<count($arr_cart_room_id); $i++){
 
+                $r_info = Room::where('id',$arr_cart_room_id[$i])->first();
+
+                $d1 = explode('/', $arr_cart_checkin_data[$i]);
+                $d2 = explode('/', $arr_cart_checkout_data[$i]);
+
+                $d1_new = $d1[2] . '-' . $d1[1] . '-' . $d1[0];
+                $d1_new_replace = str_replace(' ', '', $d1_new);
+
+                $d2_new = $d2[2] . '-' . $d2[1] . '-' . $d2[0];
+                $d2_new_replace = str_replace(' ', '', $d2_new);
+
+                $t1 = strtotime($d1_new_replace);
+                $t2 = strtotime($d2_new_replace);
+                $diff = ($t2 - $t1) / 60 / 60 / 24;
+                $sub  = $r_info->price * $diff;
+
                 $object = new OrderDetail();
                 $object->order_id      = $auto_id;
                 $object->room_id       = $arr_cart_room_id[$i];
@@ -199,9 +216,8 @@ class BookingController extends Controller
                 $object->checkout_date = $arr_cart_checkout_data[$i];
                 $object->adult         = $arr_cart_adults[$i];
                 $object->children      = $arr_cart_children[$i];
-                $object->subtotal      = '';
+                $object->subtotal      = $sub;
                 $object->save();
-
             }
 
             return redirect()->route('customer.home')->with('success', 'Payment Is Successfull');
