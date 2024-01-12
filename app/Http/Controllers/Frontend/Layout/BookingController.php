@@ -13,8 +13,11 @@ use PayPal\Api\Details;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use App\Mail\Websitemail;
 use Auth;
 use DB;
+use Mail;
+
 
 class BookingController extends Controller
 {
@@ -36,7 +39,6 @@ class BookingController extends Controller
      session()->push('cart_adults',$request->adults);
      session()->push('cart_children',$request->children);
 
-
      return redirect()->back()->with('success','Room Is Added The Cart Successfully');
 
     }
@@ -46,8 +48,8 @@ class BookingController extends Controller
     }
 
     public function cart_delete($id) {
-        $arr_cart_room_id       = session()->get('cart_room_id', []);
-        $arr_cart_checkin_data  = session()->get('cart_checkin_data', []);
+        $arr_cart_room_id       = session()->get('cart_room_id');
+        $arr_cart_checkin_data  = session()->get('cart_checkin_data');
         $arr_cart_checkout_data = session()->get('cart_checkout_data', []);
         $arr_cart_adults        = session()->get('cart_adults', []);
         $arr_cart_children      = session()->get('cart_children', []);
@@ -218,6 +220,46 @@ class BookingController extends Controller
                 $object->children      = $arr_cart_children[$i];
                 $object->subtotal      = $sub;
                 $object->save();
+
+                $subject ='New Orders';
+                $message ='Yor have an order for hotel booking. The booking information is giver below: <br>';
+                $message .='<br> Order ID:'.$order_no;
+                $message .='<br> Transaction Id:'.$result->id;
+                $message .='<br> Payment Method : PayPal';
+                $message .='<br> Paid Amount:'. $paid_amount;
+                $message .='<br> Status: Complated:'.'<br>';
+
+
+                for($i=0; $i<count($arr_cart_room_id); $i++){
+
+                    $r_info = Room::where('id',$arr_cart_room_id[$i])->first();
+
+                    $message .='<br> Room Name:'.$r_info->name;
+                    $message .='<br> Price Par Night: $'.$r_info->price;
+                    $message .='<br> Cart Checkin Date:'.$arr_cart_checkin_data[$i];
+                    $message .='<br> Cart CheckOut Date:'.$arr_cart_checkout_data[$i];
+                    $message .='<br> Adults:'.$arr_cart_adults[$i];
+                    $message .='<br> Chilldren:'.$arr_cart_children[$i].'<br>';
+                }
+
+                $customer_email = Auth::guard('customer')->user()->email;
+
+                Mail::to($customer_email)->send(new Websitemail($subject, $message));
+
+                session()->forget('cart_room_id');
+                session()->forget('cart_checkin_data');
+                session()->forget('cart_checkout_data');
+                session()->forget('cart_adults');
+                session()->forget('cart_children');
+                session()->forget('billing_name');
+                session()->forget('billing_email');
+                session()->forget('billing_phone');
+                session()->forget('billing_country');
+                session()->forget('billing_address');
+                session()->forget('billing_state');
+                session()->forget('billing_city');
+                session()->forget('billing_zip');
+
             }
 
             return redirect()->route('customer.home')->with('success', 'Payment Is Successfull');
