@@ -227,7 +227,7 @@ class BookingController extends Controller
                 $message .='<br> Order ID:'.$order_no;
                 $message .='<br> Transaction Id:'.$result->id;
                 $message .='<br> Payment Method : PayPal';
-                $message .='<br> Paid Amount:'. $paid_amount;
+                $message .='<br> Paid Amount: $'. $paid_amount;
                 $message .='<br> Status: Complated:'.'<br>';
 
 
@@ -263,7 +263,7 @@ class BookingController extends Controller
 
             }
 
-            return redirect()->route('customer.home')->with('success', 'Payment Is Successfull');
+            return redirect()->route('home')->with('success', 'Payment Is Successfull');
         }
         else{
             return redirect()->back()->with('error', 'Payment Is Failed');
@@ -273,17 +273,128 @@ class BookingController extends Controller
 
 
 
+    public function payment_stripe(Request $request, $final_price){
 
-    public function payment_stripe(){
+        $stripe_secret_key = 'sk_test_51OXzTnKa2KipEgLJNd3G94lN7F0idgHtl4kfgRiL4MQmy3Vl8PNXpzJ3oC4HNeYu1kwNitOLQC8r7BiSW9ytUoxi00IUesfoXJ';
+
+        $cents = $final_price*100;
+        Stripe\Stripe::setApiKey($stripe_secret_key);
+
+        $response = Stripe\Charge::create ([
+            "amount"      => $cents,
+            "currency"    => "usd",
+            "source"      => $request->stripeToken,
+            "description" => env('APP_NAME')
+        ]);
+
+        $responseJson = $response->jsonSerialize();
+        $transaction_id = $responseJson['balance_transaction'];
+        $last4 = $responseJson['payment_method_details']['card']['last4'];
+
+        $order_no = md5(time());
+
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'orders' ");
+        $auto_id = $statement[0]->Auto_increment;
+
+
+        $obj = new Order();
+        $obj->customer_id     = Auth::guard('customer')->user()->id;
+        $obj->order_no        = $order_no;
+        $obj->transaction_id  = $transaction_id;
+        $obj->payment_method  = 'Stripe';
+        $obj->card_last_digit = $last4;
+        $obj->paid_amount     = $final_price;
+        $obj->booking_date    = date('d/m/Y');
+        $obj->status          = 'Complated';
+        $obj->save();
+
+        $arr_cart_room_id       = session()->get('cart_room_id', []);
+        $arr_cart_checkin_data  = session()->get('cart_checkin_data', []);
+        $arr_cart_checkout_data = session()->get('cart_checkout_data', []);
+        $arr_cart_adults        = session()->get('cart_adults', []);
+        $arr_cart_children      = session()->get('cart_children', []);
+
+
+        for($i=0; $i<count($arr_cart_room_id); $i++){
+
+            $r_info = Room::where('id',$arr_cart_room_id[$i])->first();
+
+            $d1 = explode('/', $arr_cart_checkin_data[$i]);
+            $d2 = explode('/', $arr_cart_checkout_data[$i]);
+
+            $d1_new = $d1[2] . '-' . $d1[1] . '-' . $d1[0];
+            $d1_new_replace = str_replace(' ', '', $d1_new);
+
+            $d2_new = $d2[2] . '-' . $d2[1] . '-' . $d2[0];
+            $d2_new_replace = str_replace(' ', '', $d2_new);
+
+            $t1 = strtotime($d1_new_replace);
+            $t2 = strtotime($d2_new_replace);
+            $diff = ($t2 - $t1) / 60 / 60 / 24;
+            $sub  = $r_info->price * $diff;
+
+            $object = new OrderDetail();
+            $object->order_id      = $auto_id;
+            $object->room_id       = $arr_cart_room_id[$i];
+            $object->order_no      = $order_no;
+            $object->checking_date = $arr_cart_checkin_data[$i];
+            $object->checkout_date = $arr_cart_checkout_data[$i];
+            $object->adult         = $arr_cart_adults[$i];
+            $object->children      = $arr_cart_children[$i];
+            $object->subtotal      = $sub;
+            $object->save();
+
+            $subject ='New Orders';
+            $message ='Yor have an order for hotel booking. The booking information is giver below: <br>';
+            $message .='<br> Order ID:'.$order_no;
+            $message .='<br> Transaction Id:'.$transaction_id;
+            $message .='<br> Payment Method : Stripe';
+            $message .='<br> Paid Amount: $'. $final_price;
+            $message .='<br> Status: Complated:'.'<br>';
+
+
+            for($i=0; $i<count($arr_cart_room_id); $i++){
+
+                $r_info = Room::where('id',$arr_cart_room_id[$i])->first();
+
+                $message .='<br> Room Name:'.$r_info->name;
+                $message .='<br> Price Par Night: $'.$r_info->price;
+                $message .='<br> Cart Checkin Date:'.$arr_cart_checkin_data[$i];
+                $message .='<br> Cart CheckOut Date:'.$arr_cart_checkout_data[$i];
+                $message .='<br> Adults:'.$arr_cart_adults[$i];
+                $message .='<br> Chilldren:'.$arr_cart_children[$i].'<br>';
+            }
+
+            $customer_email = Auth::guard('customer')->user()->email;
+
+            Mail::to($customer_email)->send(new Websitemail($subject, $message));
+
+            session()->forget('cart_room_id');
+            session()->forget('cart_checkin_data');
+            session()->forget('cart_checkout_data');
+            session()->forget('cart_adults');
+            session()->forget('cart_children');
+            session()->forget('billing_name');
+            session()->forget('billing_email');
+            session()->forget('billing_phone');
+            session()->forget('billing_country');
+            session()->forget('billing_address');
+            session()->forget('billing_state');
+            session()->forget('billing_city');
+            session()->forget('billing_zip');
+
+
+            return redirect()->route('home')->with('success', 'Payment Is Successfull');
+
+
+
+        }
+
+
+
+
 
     }
-
-
-
-
-
-
-
 
 
 

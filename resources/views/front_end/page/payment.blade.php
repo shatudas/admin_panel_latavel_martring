@@ -34,13 +34,47 @@
 
                     <div class="stripe mt_20">
                         <h4>Pay with Stripe</h4>
+
                         @php
-                            $cents ="500";
-                            $customer_email = 'das.shatu2000@gmail.com';
+                            $arr_cart_room_id = session()->get('cart_room_id');
+                            $arr_cart_checkin_data = session()->get('cart_checkin_data');
+                            $arr_cart_checkout_data = session()->get('cart_checkout_data');
+                            $arr_cart_adults = session()->get('cart_adults');
+                            $arr_cart_children = session()->get('cart_children');
+                            $total_price = 0;
+                        @endphp
+
+                        @for ($i = 0; $i < count($arr_cart_room_id); $i++)
+                            @php
+                                $data = DB::table('rooms')
+                                    ->where('id', $arr_cart_room_id[$i])
+                                    ->first();
+                                $d1 = explode('/', $arr_cart_checkin_data[$i]);
+                                $d2 = explode('/', $arr_cart_checkout_data[$i]);
+
+                                $d1_new = $d1[2] . '-' . $d1[1] . '-' . $d1[0];
+                                $d1_new_replace = str_replace(' ', '', $d1_new);
+
+                                $d2_new = $d2[2] . '-' . $d2[1] . '-' . $d2[0];
+                                $d2_new_replace = str_replace(' ', '', $d2_new);
+
+                                $t1 = strtotime($d1_new_replace);
+                                $t2 = strtotime($d2_new_replace);
+                                $diff = ($t2 - $t1) / 60 / 60 / 24;
+
+                                $total_price = $total_price + $data->price * $diff;
+
+                            @endphp
+                        @endfor
+
+
+                        @php
+                            $cents =$total_price * 100;
+                            $customer_email = Auth::guard('customer')->user()->email;
                             $stripe_publishable_key ='pk_test_51OXzTnKa2KipEgLJI4obcVvOiS1RNBxiI3RN7rQCAohLbCU5iUbmPzIY90YkR4DQ8FQI1I6UR9WEUQdwB8SJElST00dgG8xkLK';
                         @endphp
 
-                        <form action="{{ route('payment_stripe',$cents) }}" method="post">
+                        <form action="{{ route('payment_stripe',$total_price) }}" method="post">
                         @csrf
                         <script
                             src="https://checkout.stripe.com/checkout.js" class="stripe-button"
