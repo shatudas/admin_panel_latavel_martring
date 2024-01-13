@@ -34,7 +34,27 @@
 
                     <div class="stripe mt_20">
                         <h4>Pay with Stripe</h4>
-                        <p>Write necessary code here</p>
+                        @php
+                            $cents ="500";
+                            $customer_email = 'das.shatu2000@gmail.com';
+                            $stripe_publishable_key ='pk_test_51OXzTnKa2KipEgLJI4obcVvOiS1RNBxiI3RN7rQCAohLbCU5iUbmPzIY90YkR4DQ8FQI1I6UR9WEUQdwB8SJElST00dgG8xkLK';
+                        @endphp
+
+                        <form action="{{ route('payment_stripe',$cents) }}" method="post">
+                        @csrf
+                        <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="{{ $stripe_publishable_key }}"
+                            data-amount="{{ $cents }}"
+                            data-name="{{ env('APP_NAME') }}"
+                            data-description=""
+                            data-image="{{ asset('upload/stripe_icon.png') }}"
+                            data-currency="usd"
+                            data-email="{{ $customer_email }}"
+                        >
+                        </script>
+                        </form>
+
                     </div>
 
                 </div>

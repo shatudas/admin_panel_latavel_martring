@@ -17,6 +17,7 @@ use App\Mail\Websitemail;
 use Auth;
 use DB;
 use Mail;
+Use Stripe;
 
 
 class BookingController extends Controller
@@ -268,14 +269,14 @@ class BookingController extends Controller
             return redirect()->back()->with('error', 'Payment Is Failed');
         }
 
-
     }
 
 
 
 
+    public function payment_stripe(){
 
-
+    }
 
 
 
