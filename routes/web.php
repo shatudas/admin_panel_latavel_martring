@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\Admin\RoomController;
 use App\Http\Controllers\Customer\CustomerAdminController;
 use App\Http\Controllers\Customer\CustomerAuthController;
 use App\Http\Controllers\Customer\CustomerProfileController;
+use App\Http\Controllers\Customer\CustomerOrderController;
 
 
 //----------frontend controller--------//
@@ -99,7 +100,13 @@ Route::group(['middleware'=>'customer:customer'],function(){
  Route::get('customer/profile',[CustomerProfileController::class,'customer_profile'])->name('customer.profile');
  Route::post('customer/profile/update',[CustomerProfileController::class,'customer_profile_update'])->name('customer.profile.update');
 
+ //------Customer order-----------//
+ Route::get('customer/order/view',[CustomerOrderController::class,'customer_order'])->name('customer.order');
+ Route::get('customer/invoice/{id}',[CustomerOrderController::class,'customer_invoice'])->name('customer.invoice');
+
 });
+
+
 
 
 //--------admin login-------//
