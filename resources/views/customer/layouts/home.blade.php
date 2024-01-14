@@ -22,9 +22,28 @@
 
  <section class="content">
    <div class="container-fluid">
-     <div class="row">
 
-     </div>
+        <div class="row">
+
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box">
+                <div class="info-box-content" align="center">
+                  <span class="info-box-text"><b> Complated Order : {{ $complated }}</b></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <div class="info-box-content" align="center">
+                    <span class="info-box-text"><b> padding Order : {{ $padding }}</b></span>
+                  </div>
+                </div>
+              </div>
+
+        </div>
+
+
    </div>
  </section>
 
