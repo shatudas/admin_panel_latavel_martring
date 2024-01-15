@@ -22,12 +22,67 @@
 
 
  <section class="content">
-   <div class="container-fluid">
-     <div class="row">
+    <div class="container-fluid">
 
-     </div>
-   </div>
- </section>
+         <div class="row">
+
+             <div class="col-12 col-sm-6 col-md-3">
+               <div class="info-box">
+                 <div class="info-box-content" align="center">
+                   <span class="info-box-text"><b> Complated Order : {{ $complated_order }}</b></span>
+                 </div>
+               </div>
+             </div>
+
+             <div class="col-12 col-sm-6 col-md-3">
+                 <div class="info-box">
+                   <div class="info-box-content" align="center">
+                     <span class="info-box-text"><b> padding Order : {{ $padding_order }}</b></span>
+                   </div>
+                 </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <div class="info-box-content" align="center">
+                    <span class="info-box-text"><b> Active Customer : {{ $active_customer }}</b></span>
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <div class="info-box-content" align="center">
+                    <span class="info-box-text"><b> Padding Customer : {{ $padding_customer }}</b></span>
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <div class="info-box-content" align="center">
+                    <span class="info-box-text"><b> Total Room Type : {{ $total_room }}</b></span>
+                  </div>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-md-3">
+                <div class="info-box">
+                  <div class="info-box-content" align="center">
+                    <span class="info-box-text"><b> Total Subscriber : {{ $subscriber }}</b></span>
+                  </div>
+                </div>
+            </div>
+
+         </div>
+
+
+    </div>
+  </section>
 
 
 </div>
