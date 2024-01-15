@@ -22,6 +22,7 @@ class AdminController extends Controller
     $alldate ['padding_customer']  = Customer::where('status','1')->count();
     $alldate ['total_room']        = Room::where('status','1')->count();
     $alldate ['subscriber']        = Subscriber::count();
+    $alldate ['order']   = Order::orderBy('id','desc')->skip(0)->take(5)->get();
 
     return view('back_end.layouts.home',$alldate);
   }

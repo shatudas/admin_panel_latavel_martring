@@ -81,6 +81,62 @@
          </div>
 
 
+         <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                 <div class="card-header">
+                  <h3 class="card-title">Recent Order list</h3>
+                  </div>
+
+                 <div class="card-body">
+                  <table id="example2" class="table table-bordered table-hover">
+
+                   <thead>
+                    <tr>
+                     <th> Order No </th>
+                     <th> Payment Method </th>
+                     <th> Booking Date </th>
+                     <th> Paid Amount </th>
+                     <th align="center"> Action </th>
+                    </tr>
+                   </thead>
+
+                   <tbody>
+                    @foreach($order as $data)
+                    <tr>
+                     <td>
+                      {{ $data->order_no }}
+                     </td>
+                     <td>
+                      {{ $data->payment_method }}
+                     </td>
+                     <td>
+                      {{ $data->booking_date }}
+                     </td>
+                     <td>
+                      {{ $data->paid_amount }}
+                     </td>
+
+                     <td align="center">
+                      <a href="{{ route('admin.invoice',$data->id) }}" class="btn btn-sm btn-primary">
+                       <i class="fa fa-eye"></i>
+                      </a>
+                     </td>
+
+                    </tr>
+
+                    @endforeach
+                   </tbody>
+
+                  </table>
+                 </div>
+                </div>
+              </div>
+
+         </div>
+
+
     </div>
   </section>
 
