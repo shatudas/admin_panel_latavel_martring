@@ -29,11 +29,14 @@ class CustomerAuthController extends Controller
 
    $credentials = [
     'email'    => $request->email,
-    'password' => $request->password
+    'password' => $request->password,
+    'status' => '0'
    ];
+
 
    if (Auth::guard('customer')->attempt($credentials)) {
     $customer_data = Customer::where('email', $request->email)->first();
+
     if ($customer_data->status == 0) {
      return redirect()->route('customer.home');
     }
@@ -43,6 +46,7 @@ class CustomerAuthController extends Controller
     }else{
     return redirect()->route('customer.login')->with('error', 'Credentials not matched');
     }
+
 
    }
 

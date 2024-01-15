@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\Admin\PageHeadingController;
 use App\Http\Controllers\Backend\Admin\AdminSubscriberController;
 use App\Http\Controllers\Backend\Admin\AmenityController;
 use App\Http\Controllers\Backend\Admin\RoomController;
+use App\Http\Controllers\Backend\Admin\CustomerViewController;
 
 
 //----------Customer--------//
@@ -128,6 +129,11 @@ Route::group(['middleware'=>'admin:admin'],function(){
 	//------profile-----------//
 	Route::get('admin/profile',[ProfileController::class,'admin_profile'])->name('admin.profile');
 	Route::post('admin/profile/update',[ProfileController::class,'admin_profile_update'])->name('admin.profile.update');
+
+
+    //---------Customer Information--------//
+    Route::get('customer/view',[CustomerViewController::class,'customer_view'])->name('customer.view');
+    Route::get('customer/status/{id}',[CustomerViewController::class,'customer_status'])->name('customer.status');
 
 
 	//---------Slider---------//
