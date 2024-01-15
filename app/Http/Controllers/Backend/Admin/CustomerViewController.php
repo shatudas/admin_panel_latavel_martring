@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Customer;
-
+use App\Models\Order;
+use App\Models\OrderDetail;
+use Auth;
 class CustomerViewController extends Controller
 {
 
@@ -29,6 +31,20 @@ class CustomerViewController extends Controller
         return redirect()->back()->with('success','Data Updated Successfully');
 
     }
+
+
+    public function admin_order(){
+        $alldata = Order::orderBy('booking_date')->get();
+        return view ('back_end.order.order_view',compact('alldata'));
+       }
+
+
+    public function admin_invoice($id){
+        $order = Order::where('id',$id)->first();
+        $order_detrail = OrderDetail::where('order_id',$id)->get();
+        $customer_info = Customer::where('id',$order->customer_id)->first();
+        return view ('back_end.order.invoice',compact('order','order_detrail','customer_info'));
+       }
 
 
 

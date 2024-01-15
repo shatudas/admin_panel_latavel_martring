@@ -333,6 +333,12 @@
                   <p>Customer View</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.order') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Order View</p>
+                </a>
+              </li>
             </ul>
           </li>
 

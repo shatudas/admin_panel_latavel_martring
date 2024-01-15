@@ -135,6 +135,10 @@ Route::group(['middleware'=>'admin:admin'],function(){
     Route::get('customer/view',[CustomerViewController::class,'customer_view'])->name('customer.view');
     Route::get('customer/status/{id}',[CustomerViewController::class,'customer_status'])->name('customer.status');
 
+    Route::get('admin/order/view',[CustomerViewController::class,'admin_order'])->name('admin.order');
+    Route::get('admin/invoice/{id}',[CustomerViewController::class,'admin_invoice'])->name('admin.invoice');
+
+
 
 	//---------Slider---------//
 	Route::get('slider/view',[SliderController::class,'slide_view'])->name('slider.view');
