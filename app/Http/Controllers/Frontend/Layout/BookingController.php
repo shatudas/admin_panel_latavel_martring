@@ -8,12 +8,14 @@ use App\Models\Customer;
 use App\Models\OrderDetail;
 use App\Models\Order;
 use App\Models\Room;
+use App\Models\Booked_room;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 use App\Mail\Websitemail;
+
 use Auth;
 use DB;
 use Mail;
@@ -222,6 +224,25 @@ class BookingController extends Controller
                 $object->subtotal      = $sub;
                 $object->save();
 
+
+                while(1){
+                    if($t1>=$t2){
+                        break;
+                    }
+
+                    $obj= new Booked_room();
+                    $obj->booking_date = date('d/m/Y',$t1);
+                    $obj->order_no     = $order_no;
+                    $obj->room_id      = $arr_cart_room_id[$i];
+
+                    $obj->save();
+
+                    $t1 = strtotime('+1 day',$t1);
+
+                }
+
+            }
+
                 $subject ='New Orders';
                 $message ='Yor have an order for hotel booking. The booking information is giver below: <br>';
                 $message .='<br> Order ID:'.$order_no;
@@ -260,8 +281,6 @@ class BookingController extends Controller
                 session()->forget('billing_state');
                 session()->forget('billing_city');
                 session()->forget('billing_zip');
-
-            }
 
             return redirect()->route('home')->with('success', 'Payment Is Successfull');
         }
@@ -344,6 +363,24 @@ class BookingController extends Controller
             $object->subtotal      = $sub;
             $object->save();
 
+
+            while(1){
+                if($t1>=$t2){
+                    break;
+                }
+
+                $obj= new Booked_room();
+                $obj->booking_date = date('d/m/Y',$t1);
+                $obj->order_no     = $order_no;
+                $obj->room_id      = $arr_cart_room_id[$i];
+
+                $obj->save();
+
+                $t1 = strtotime('+1 day',$t1);
+
+            }
+        }
+
             $subject ='New Orders';
             $message ='Yor have an order for hotel booking. The booking information is giver below: <br>';
             $message .='<br> Order ID:'.$order_no;
@@ -389,14 +426,6 @@ class BookingController extends Controller
 
 
         }
-
-
-
-
-
-    }
-
-
 
 
 

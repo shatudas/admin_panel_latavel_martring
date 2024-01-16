@@ -28,7 +28,8 @@
 
              <div class="col-12 col-sm-6 col-md-3">
                <div class="info-box">
-                 <div class="info-box-content" align="center">
+                 <div class="info-box-content">
+                    {{-- <img src="{{ asset('back_end/fast-forward.gif') }}" alt="" class="img-fluid" style="height:20px; width:30px; float:left; clear:right;"> --}}
                    <span class="info-box-text"><b> Complated Order : {{ $complated_order }}</b></span>
                  </div>
                </div>
