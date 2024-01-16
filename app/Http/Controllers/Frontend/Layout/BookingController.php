@@ -32,9 +32,62 @@ class BookingController extends Controller
      'adults'           => 'required'
      ]);
 
-     $data = explode('-',$request->checkin_checkout);
-     $checkin_data=$data[0];
-     $checkout_data=$data[1];
+
+        $data = explode('-',$request->checkin_checkout);
+        $checkin_data=$data[0];
+        $checkout_data=$data[1];
+
+
+
+        $d1 = explode('/', $checkin_data);
+        $d2 = explode('/', $checkout_data);
+
+
+
+        $d1_new = $d1[2] . '-' . $d1[1] . '-' . $d1[0];
+        $d1_new_replace = str_replace(' ', '', $d1_new);
+
+
+
+        $d2_new = $d2[2] . '-' . $d2[1] . '-' . $d2[0];
+        $d2_new_replace = str_replace(' ', '', $d2_new);
+
+
+        $t1 = strtotime($d1_new_replace);
+        $t2 = strtotime($d2_new_replace);
+
+        // dd($t1);
+
+        $cnt = 1;
+        while(1) {
+            if($t1>=$t2) {
+                break;
+            }
+            $single_date = date('d/m/Y',$t1);
+            // dd($single_date);
+
+            $total_already_booked_rooms = Booked_room::where('booking_date',$single_date)->where('room_id',$request->room_id)->count();
+
+            $arr = Room::where('id',$request->room_id)->first();
+
+            // dd($arr);
+
+            $total_allowed_rooms = $arr->total_room;
+
+            if($total_already_booked_rooms == $total_allowed_rooms) {
+                $cnt = 0;
+                break;
+            }
+
+            $t1 = strtotime('+1 day',$t1);
+
+        }
+
+        if($cnt == 0) {
+            return redirect()->back()->with('error', 'Maximum number of this room is already booked');
+        }
+
+
 
      session()->push('cart_room_id',$request->room_id);
      session()->push('cart_checkin_data',$checkin_data);

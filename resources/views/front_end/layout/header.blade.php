@@ -13,7 +13,14 @@
     <ul class="right">
 
      @if($pageheading->cartstatus ==0)
-       <li class="menu"><a href="{{ route('cart') }}">{{ $pageheading->cartheading }}</a></li>
+       <li class="menu">
+        <a href="{{ route('cart') }}">{{ $pageheading->cartheading }} @if(session()->has('cart_room_id'))
+            <sup style="color:red;">
+                {{ count(session()->get('cart_room_id')) }}
+            </sup>
+            @endif
+        </a>
+        </li>
       @endif
 
       @if($pageheading->checkoutstatus ==0)
