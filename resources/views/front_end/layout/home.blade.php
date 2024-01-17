@@ -29,6 +29,7 @@
         </div>
 
 
+
         <div class="search-section">
             <div class="container">
                 <form action="{{ route('booking.submit') }}" method="post">
@@ -69,6 +70,10 @@
             </div>
         </div>
 
+
+
+        @if($setting->home_feature_status == 'Show')
+
         <div class="home-feature">
             <div class="container">
                 <div class="row">
@@ -92,7 +97,11 @@
             </div>
         </div>
 
-        @if($pageheading->roomstatus ==0)
+        @endif
+
+
+
+        @if($setting->home_room_status == 'Show')
 
         <div class="home-rooms">
             <div class="container">
@@ -105,6 +114,12 @@
 
 
                     @foreach ($room as $data)
+
+                    @if($loop->iteration>$setting->home_room_total)
+                        @break
+                    @endif
+
+
                     <div class="col-md-3">
                         <div class="inner">
                             <div class="photo">
@@ -137,12 +152,14 @@
 
                 @endif
 
-
-
             </div>
         </div>
 
         @endif
+
+
+
+		@if($setting->home_testimonial_status == 'Show')
 
         <div class="testimonial" style="background-image: url({{ asset('front_end') }}/uploads/slide2.jpg)">
             <div class="bg"></div>
@@ -183,6 +200,14 @@
             </div>
         </div>
 
+       @endif
+
+
+
+
+
+       @if($setting->home_post_status == 'Show')
+
         <div class="blog-item">
             <div class="container">
                 <div class="row">
@@ -194,7 +219,9 @@
 
                 @foreach ($post as $posts)
 
-
+                @if($loop->iteration>$setting->home_total_post)
+                    @break
+                @endif
 
                     <div class="col-md-4">
                         <div class="inner">
@@ -220,6 +247,8 @@
                 </div>
             </div>
         </div>
+
+        @endif
 
 @endsection
 

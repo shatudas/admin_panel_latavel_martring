@@ -17,10 +17,10 @@
                         @endif
 
                         @if($pageheading->photostatus ==0)
-																									<li>
-																										<a href="{{ route('photo') }}">{{ $pageheading->photoheading }}</a>
-																				     </li>
-																							 @endif
+						<li>
+						<a href="{{ route('photo') }}">{{ $pageheading->photoheading }}</a>
+						</li>
+						@endif
 
                         @if($pageheading->faqstatus ==0)
                         <li>
@@ -31,7 +31,7 @@
                         <li>
                             <a href="{{ route('contect') }}">Contact</a>
                         </li>
-																								
+
                     </ul>
                 </div>
             </div>
@@ -65,8 +65,7 @@
                             <i class="fa fa-map-marker"></i>
                         </div>
                         <div class="right">
-                            34 Antiger Lane,<br>
-                            PK Lane, USA, 12937
+                           {!! $setting->footer_address !!}
                         </div>
                     </div>
                     <div class="list-item">
@@ -74,7 +73,7 @@
                             <i class="fa fa-volume-control-phone"></i>
                         </div>
                         <div class="right">
-                            contact@arefindev.com
+                            {{ $setting->footer_email }}
                         </div>
                     </div>
                     <div class="list-item">
@@ -82,15 +81,27 @@
                             <i class="fa fa-envelope-o"></i>
                         </div>
                         <div class="right">
-                            122-222-1212
+                         {{ $setting->footer_phone }}
                         </div>
                     </div>
                     <ul class="social">
-                        <li><a href=""><i class="fa fa-facebook-f"></i></a></li>
-                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                        <li><a href=""><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href=""><i class="fa fa-instagram"></i></a></li>
+
+                       @if( $setting->facebook !=='')
+                        <li><a href="{{ $setting->facebook }}"><i class="fa fa-facebook-f"></i></a></li>
+                       @endif
+
+                       @if( $setting->twitter !=='')
+                        <li><a href="{{ $setting->twitter }}"><i class="fa fa-twitter"></i></a></li>
+                       @endif
+
+                       @if( $setting->linkedin !=='')
+                        <li><a href="{{ $setting->linkedin }}"><i class="fa fa-pinterest-p"></i></a></li>
+                       @endif
+
+                       @if( $setting->linkedin !=='')
+                        <li><a href="{{ $setting->pinterest }}"><i class="fa fa-linkedin"></i></a></li>
+                       @endif
+
                     </ul>
                 </div>
             </div>
@@ -121,7 +132,7 @@
 <div id="loader"></div>
 
 <div class="copyright">
-    Copyright 2022, ArefinDev. All Rights Reserved.
+ {{ $setting->footer_copy_right }}
 </div>
 
 

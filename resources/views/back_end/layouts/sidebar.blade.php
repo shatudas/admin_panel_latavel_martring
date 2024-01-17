@@ -60,6 +60,14 @@
                   <p>Room</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{ route('available.room') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Available Room</p>
+                </a>
+              </li>
+
             </ul>
           </li>
 

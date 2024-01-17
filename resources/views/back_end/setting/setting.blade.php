@@ -94,6 +94,15 @@
 
 
                    <div class="col-md-6 mt-2">
+                    <smail for="home_testimonial_status">Testimonial Status</smail>
+                    <select name="home_testimonial_status" class="form-control form-control-sm">
+                        <option value="Show" @if($setting->home_testimonial_status == 'Show') selected  @endif>Show</option>
+                        <option value="Hide" @if($setting->home_testimonial_status == 'Hide') selected  @endif>Hide</option>
+                    </select>
+                   </div>
+
+
+                   <div class="col-md-6 mt-2">
                     <smail for="home_room_total">Home Room Total</smail>
                     <input type="text" name="home_room_total" class="form-control form-control-sm" value="{{ $setting->home_room_total }}" >
                    </div>
@@ -104,15 +113,6 @@
                     <select name="home_room_status" class="form-control form-control-sm">
                         <option value="Show" @if($setting->home_room_status == 'Show') selected  @endif>Show</option>
                         <option value="Hide" @if($setting->home_room_status == 'Hide') selected  @endif>Hide</option>
-                    </select>
-                   </div>
-
-
-                   <div class="col-md-6 mt-2">
-                    <smail for="home_testimonial_status">Testimonial Status</smail>
-                    <select name="home_testimonial_status" class="form-control form-control-sm">
-                        <option value="Show" @if($setting->home_testimonial_status == 'Show') selected  @endif>Show</option>
-                        <option value="Hide" @if($setting->home_testimonial_status == 'Hide') selected  @endif>Hide</option>
                     </select>
                    </div>
 
@@ -130,6 +130,7 @@
                         <option value="Hide" @if($setting->home_post_status == 'Hide') selected  @endif>Hide</option>
                     </select>
                    </div>
+
 
 
                    <div class="col-md-6 mt-2">

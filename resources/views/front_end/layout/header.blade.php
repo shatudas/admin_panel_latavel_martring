@@ -3,10 +3,17 @@
   <div class="row">
 
    <div class="col-md-6 left-side">
+
     <ul>
-     <li class="phone-text">111-222-3333</li>
-     <li class="email-text">contact@arefindev.com</li>
+        @if($setting->top_bar_phone !== '')
+        <li class="phone-text">{{ $setting->top_bar_phone }}</li>
+        @endif
+
+        @if($setting->top_bar_email !== '')
+        <li class="email-text">{{ $setting->top_bar_email }}</li>
+        @endif
     </ul>
+
    </div>
 
    <div class="col-md-6 right-side">
@@ -53,7 +60,7 @@
 
    <div class="mobile-nav">
     <a href="{{ route('home') }}" class="logo">
-     <img src="{{ asset('front_end') }}/uploads/logo.png" alt="">
+     <img src="{{ asset('upload/setting/'.$setting->logo )}}" alt="">
     </a>
    </div>
 
@@ -63,7 +70,7 @@
       <nav class="navbar navbar-expand-md navbar-light">
 
        <a class="navbar-brand" href="{{ route('home') }}">
-        <img src="{{ asset('front_end') }}/uploads/logo.png" alt="">
+        <img src="{{ asset('upload/setting/'.$setting->logo )}}" alt="">
       </a>
 
       <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">

@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\Admin\AmenityController;
 use App\Http\Controllers\Backend\Admin\RoomController;
 use App\Http\Controllers\Backend\Admin\CustomerViewController;
 use App\Http\Controllers\Backend\Admin\SettingController;
+use App\Http\Controllers\Backend\Admin\AvailableController;
 
 
 //----------Customer--------//
@@ -144,6 +145,10 @@ Route::group(['middleware'=>'admin:admin'],function(){
     Route::get('setting',[SettingController::class,'setting'])->name('setting');
     Route::post('setting/update/{id}',[SettingController::class,'setting_update'])->name('setting.update');
 
+
+    //---------Available---------//
+    Route::get('available/room',[AvailableController::class,'available_room'])->name('available.room');
+    Route::post('available/room/search',[AvailableController::class,'available_room_search'])->name('available.room.search');
 
 
 	//---------Slider---------//
