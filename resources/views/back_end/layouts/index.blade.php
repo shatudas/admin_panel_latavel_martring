@@ -90,6 +90,19 @@
     });
    </script>
 
+
+<script type="text/javascript">
+    $(document).ready(function(){
+     $('#imageone').change(function(e){
+     var reader = new FileReader();
+     reader.onload=function(e){
+      $('#showImageone').attr('src',e.target.result);
+     }
+     reader.readAsDataURL(e.target.files['0']);
+     });
+    });
+   </script>
+
    <script type="text/javascript">
     $(function()
     {

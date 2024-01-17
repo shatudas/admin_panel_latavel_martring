@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\Admin\AdminSubscriberController;
 use App\Http\Controllers\Backend\Admin\AmenityController;
 use App\Http\Controllers\Backend\Admin\RoomController;
 use App\Http\Controllers\Backend\Admin\CustomerViewController;
+use App\Http\Controllers\Backend\Admin\SettingController;
 
 
 //----------Customer--------//
@@ -137,6 +138,11 @@ Route::group(['middleware'=>'admin:admin'],function(){
 
     Route::get('admin/order/view',[CustomerViewController::class,'admin_order'])->name('admin.order');
     Route::get('admin/invoice/{id}',[CustomerViewController::class,'admin_invoice'])->name('admin.invoice');
+
+
+    //---------setting---------//
+    Route::get('setting',[SettingController::class,'setting'])->name('setting');
+    Route::post('setting/update/{id}',[SettingController::class,'setting_update'])->name('setting.update');
 
 
 
