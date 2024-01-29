@@ -187,6 +187,25 @@
                     </li>
 
 
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-sliders-h"></i>
+                            <p>Slider
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('slider.view') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Manage Slider</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-list"></i>
@@ -229,23 +248,6 @@
                                 <a href="{{ route('available.room') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Available Room</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-sliders-h"></i>
-                            <p>Slider
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('slider.view') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Manage Slider</p>
                                 </a>
                             </li>
                         </ul>
@@ -304,7 +306,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="nav-icon fas fa-question-circle" aria-hidden="true"></i>
                             <p>
                                 FAQ
                                 <i class="fas fa-angle-left right"></i>
@@ -347,7 +349,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="nav-icon fas fa-user-circle"></i>
                             <p>
                                 Customer
                                 <i class="fas fa-angle-left right"></i>
@@ -372,7 +374,7 @@
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="nav-icon fa fa-thumbs-up"></i>
                             <p>Subscriber
                                 <i class="fas fa-angle-left right"></i>
                             </p>

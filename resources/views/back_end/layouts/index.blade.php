@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title> Admin Panel </title>
 
+        <link rel="icon" type="image/png" href="{{ asset('upload/setting/'.$setting->favicon )}}">
+
         <!-----include link------>
         @include('back_end.layouts.link.headerLink')
 
@@ -16,7 +18,7 @@
 
             <!-- Preloader -->
             <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="{{ asset('back_end') }}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+                <img class="animation__shake" src="{{ asset('upload/setting/'.$setting->logo )}}" alt="AdminLTELogo" height="60" width="60">
             </div>
 
 

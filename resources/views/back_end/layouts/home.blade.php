@@ -82,7 +82,9 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <h3 class="card-title">Recent Order list</h3>
+                            <center>
+                                <h3 class="card-title">Recent Order list</h3>
+                            </center>
                         </div>
 
                         <div class="card-body">
@@ -107,10 +109,10 @@
                                             <td>
                                             {{ $data->payment_method }}
                                             </td>
-                                            <td>
+                                            <td align="right">
                                             {{ $data->booking_date }}
                                             </td>
-                                            <td>
+                                            <td align="right">
                                             {{ $data->paid_amount }}
                                             </td>
 
