@@ -50,7 +50,7 @@
               @foreach($alldata as $data)
               <tr>
                <td align="center">
-                <i class="{{ $data->icon }}" style="font-size:48px;color:red"></i>
+                <i class="{{ $data->icon }}" style="font-size:48px;color:{{ $setting->themecolor }}"></i>
                </td>
                <td>{{ $data->heading }}</td>
                <td>{!! $data->detalis !!}</td>
