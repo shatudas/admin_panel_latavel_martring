@@ -35,7 +35,8 @@ class CreateSettingsTable extends Migration
             $table->string('twitter')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('pinterest')->nullable();
-            $table->string('theme_color');
+            $table->string('themecolor')->nullable();
+            $table->string('themebackgroung')->nullable();
             $table->string('analytic_id')->nullable();
             $table->timestamps();
         });

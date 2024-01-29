@@ -184,8 +184,13 @@
 
 
                    <div class="col-md-6 mt-2">
-                    <smail for="theme_color">Theme Color</smail>
-                    <input type="text" name="theme_color" class="form-control form-control-sm" value="{{ $setting->theme_color }}" >
+                    <smail for="themecolor">Theme Color</smail>
+                    <input type="text" name="themecolor" class="form-control form-control-sm" value="{{ $setting->themecolor }}" >
+                   </div>
+
+                   <div class="col-md-6 mt-2">
+                    <smail for="themebackgroung">Theme Background Color</smail>
+                    <input type="text" name="themebackgroung" class="form-control form-control-sm" value="{{ $setting->themebackgroung }}" >
                    </div>
 
 

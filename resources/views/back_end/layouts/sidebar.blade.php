@@ -1,7 +1,7 @@
    <!-- Main Sidebar Container -->
    <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('admin.login') }}" class="brand-link" align="center" style="text-decoration:none;">
+    <a href="{{ route('admin.home') }}" class="brand-link" align="center" style="text-decoration:none;">
       <span class="brand-text font-weight-light">Admin Panel</span>
     </a>
 

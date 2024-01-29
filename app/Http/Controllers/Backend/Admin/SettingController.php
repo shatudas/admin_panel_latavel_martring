@@ -21,7 +21,6 @@ class SettingController extends Controller
 
         $obj = Setting::where('id',1)->first();
 
-
         if($request->hasFile('logo')){
             $request->validate([
                 'logo' => 'image|mimes:jpg,jpeg,png,gif'
@@ -65,7 +64,8 @@ class SettingController extends Controller
         $obj->linkedin                = $request->linkedin;
         $obj->pinterest               = $request->pinterest;
         $obj->analytic_id             = $request->analytic_id;
-        $obj->theme_color             = $request->theme_color;
+        $obj->themecolor              = $request->themecolor;
+        $obj->themebackgroung         = $request->themebackgroung;
 
         $obj->update();
 

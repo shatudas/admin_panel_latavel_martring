@@ -52,6 +52,5 @@ class AppServiceProvider extends ServiceProvider
      view()->share('room_data',$room_data);
      view()->share('setting',$setting);
 
-
     }
 }
