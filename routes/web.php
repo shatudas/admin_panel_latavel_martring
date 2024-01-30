@@ -24,7 +24,7 @@ use App\Http\Controllers\Backend\Admin\RoomController;
 use App\Http\Controllers\Backend\Admin\CustomerViewController;
 use App\Http\Controllers\Backend\Admin\SettingController;
 use App\Http\Controllers\Backend\Admin\AvailableController;
-
+use App\Http\Controllers\Backend\Admin\AdminUserController;
 
 //----------Customer--------//
 use App\Http\Controllers\Customer\CustomerAdminController;
@@ -124,6 +124,15 @@ Route::post('admin/reset/password',[LoginController::class,'admin_reset_password
 
 //----admin middleware-------//
 Route::group(['middleware'=>'admin:admin'],function(){
+
+    Route::get('admin/view',[AdminUserController::class,'admin_view'])->name('admin.view');
+	Route::get('admin/add',[AdminUserController::class,'admin_add'])->name('admin.add');
+	Route::post('admin/store',[AdminUserController::class,'admin_store'])->name('admin.store');
+	Route::get('admin/edit/{id}',[AdminUserController::class,'admin_edit'])->name('admin.edit');
+	Route::post('admin/update/{id}',[AdminUserController::class,'admin_update'])->name('admin.update');
+	Route::get('admin/active/{id}',[AdminUserController::class,'admin_active'])->name('admin.active');
+	Route::get('admin/inactive/{id}',[AdminUserController::class,'admin_inactive'])->name('admin.inactive');
+	Route::get('admin/delete/{id}',[AdminUserController::class,'admin_delete'])->name('admin.delete');
 
 	//------Admin Deshboard-----------//
 	Route::get('admin/home',[AdminController::class,'admin_home'])->name('admin.home');

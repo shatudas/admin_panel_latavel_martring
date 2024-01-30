@@ -11,9 +11,11 @@ use App\Mail\Websitemail;
 
 class LoginController extends Controller
 {
+
     public function admin_login(){
         return view ('back_end.login.login');
     }
+
 
     public function forgat_password(){
         return view ('back_end.login.forget-password');
@@ -72,6 +74,8 @@ class LoginController extends Controller
         }
       }
 
+
+
     public function admin_logout(){
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
@@ -87,15 +91,13 @@ class LoginController extends Controller
         }
 
         return view('Back_end.login.reset_password',compact('token','email'));
-
-
     }
 
 
     public function admin_reset_password(Request $request){
 
         $request->validate([
-            'password'    => 'required',
+            'password'        => 'required',
             'retype_password' =>'required|same:password'
         ]);
 
@@ -105,11 +107,6 @@ class LoginController extends Controller
         $admin_data->update();
 
         return redirect()->route('admin.login')->with('success','Password Reset SuccessFull');
-
-
-
-
-
 
     }
 
