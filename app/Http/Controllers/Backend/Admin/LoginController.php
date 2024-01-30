@@ -65,13 +65,23 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-        if(Auth::guard('admin')->attempt($credential)){
-            return redirect()->route('admin.home');
+        $user = Admin::where('email',$request->email)->first();
+
+        if($user->status == '0'){
+
+            if(Auth::guard('admin')->attempt($credential)){
+                return redirect()->route('admin.home');
+            }
+            else
+            {
+                return redirect()->route('admin.login')->with('error','credential Not Match');
+            }
         }
         else
-        {
-            return redirect()->route('admin.login')->with('error','credential Not Match');
-        }
+            {
+                return redirect()->route('admin.login')->with('error','account Not Active');
+            }
+
       }
 
 

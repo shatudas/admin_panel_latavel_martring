@@ -24,12 +24,13 @@
 
 
                     <!------User Part------->
+                    @if (Auth::guard('admin')->user()->role == 'Administrator')
+
                     <li>
                         <a class="text-white" style="text-decoration:none;">
                             <small> Administrator </small>
                         </a>
                     </li>
-
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -48,6 +49,9 @@
                             </li>
                         </ul>
                     </li>
+
+                    @endif
+
 
                     <!--------Setting------>
                     <li>

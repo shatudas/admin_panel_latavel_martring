@@ -12,6 +12,7 @@ class AdminUserController extends Controller
 {
 
     public function admin_view(){
+        
         $data['alldata'] = Admin::get();
         return view('back_end.admin.view_admin',$data);
     }

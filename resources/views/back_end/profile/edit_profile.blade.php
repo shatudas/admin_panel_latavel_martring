@@ -36,9 +36,6 @@
                          alt="Profile Photo" type="file">
                   </div>
 
-                  {{-- {{(!empty($slider->image))?url('upload/slider_image/'.$slider->image):url('upload/No-image.jpg')}} --}}
-
-
                   <h3 class="profile-username text-center">{{ Auth::guard('admin')->user()->name }}</h3>
                   <p class="text-muted text-center">{{ Auth::guard('admin')->user()->email }}</p>
 
@@ -63,7 +60,7 @@
 
                     <div class="col-md-6">
                      <smail for="name">Name</smail>
-                     <input type="text" name="name" class="form-control form-control-sm  @error('name') is-valid @enderror"  value="" placeholder="Name">
+                     <input type="text" name="name" class="form-control form-control-sm  @error('name') is-valid @enderror"  value="{{ Auth::guard('admin')->user()->name }}" placeholder="Name">
                      @error('name')
                        <div class="aleart text-danger">
                          {{ $message  }}
@@ -75,7 +72,7 @@
 
                     <div class="col-md-6">
                      <smail for="email">Email</smail>
-                     <input type="text" name="email" class="form-control form-control-sm  @error('email') is-valid @enderror"  value="" placeholder="Email">
+                     <input type="text" name="email" class="form-control form-control-sm  @error('email') is-valid @enderror"  value="{{ Auth::guard('admin')->user()->email }}" placeholder="Email">
                      @error('email')
                        <div class="aleart text-danger">
                          {{ $message  }}
