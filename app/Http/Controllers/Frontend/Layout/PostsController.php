@@ -9,7 +9,7 @@ use App\Models\Post;
 class PostsController extends Controller
 {
     public function post(){
-        $data['post'] = Post::where('status','0')->orderBy('id','DESC')->paginate(2);
+        $data['post'] = Post::where('status','0')->orderBy('id','DESC')->paginate(6);
         return view('front_end.post.post',$data);
     }
 

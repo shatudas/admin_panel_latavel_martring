@@ -33,8 +33,7 @@
 
 
             <footer class="main-footer">
-                <strong>Copyright &copy; {{ date('Y') }}<a href="#"></a>.</strong>
-                All rights reserved.
+                {{ $setting->footer_copy_right }}
             </footer>
 
             <aside class="control-sidebar control-sidebar-dark"></aside>

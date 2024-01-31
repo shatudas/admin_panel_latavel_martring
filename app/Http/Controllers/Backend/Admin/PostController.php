@@ -83,8 +83,8 @@ class PostController extends Controller
        $data->heading       = $request->heading;
        $data->short_content = $request->short_content;
        $data->content       = $request->content;
-       $data->status	      = $request->status;
-       $data->image         = $final_name;
+       $data->status	    = $request->status;
+
 
        $data->update();
 

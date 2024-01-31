@@ -47,7 +47,7 @@
               @foreach($alldata as $data)
               <tr>
                 <td align="center">
-                    <img src="{{!empty($data->featured_photo)?url('upload/room/'.$data->featured_photo):url('upload/no_image.png')}}" alt="" class="img-fluid" style="height:100px;">
+                    <img src="{{!empty($data->featured_photo)?url('upload/room/'.$data->featured_photo):url('upload/no_image.png')}}" alt="" class="img-fluid" style="height:100px; width:120px;">
                 </td>
                <td>
                 {{ $data->name }}

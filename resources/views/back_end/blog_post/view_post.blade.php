@@ -38,9 +38,9 @@
 
              <thead>
               <tr>
-			  									 <th>Image</th>
-               <th>Heading</th>
-               <th>Sort Detalis</th>
+			   <th>Image</th>
+               <th >Heading</th>
+               <th style="width:40%;">Sort Detalis</th>
                <th>Status</th>
                <th>Action</th>
               </tr>
@@ -51,7 +51,7 @@
               @foreach($alldata as $data)
               <tr>
                <td>
-                <img src="{{!empty($data->image)?url('upload/blog_post/'.$data->image):url('upload/no_image.png')}}" alt="" class="img-fluid" style="height:120px;"   >
+                <img src="{{!empty($data->image)?url('upload/blog_post/'.$data->image):url('upload/no_image.png')}}" alt="" class="img-fluid" style="width:100px;">
                </td>
                <td>{{ $data->heading }}</td>
                <td>{{ $data->short_content }}</td>

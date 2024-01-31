@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h3>Setting</h3>
+          <h5>Setting</h5>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -31,7 +31,9 @@
            <div class="card">
 
              <div class="card-header">
-              <h3 class="card-title">Update Setting Information</h3>
+              <h3 class="card-title" align="center">
+                Update Setting Information
+              </h3>
              </div>
 
              <div class="card-body">
@@ -69,7 +71,7 @@
                  </div>
 
                   <div class="form-group col-md-3 mt-3" align="center">
-                   <img id="showImageone" src="{{!empty($setting->favicon)?url('upload/setting/'.$setting->favicon):url('upload/no_image.png')}}" style="width:100px; height:60px; border:1px solid #CCC;">
+                   <img id="showImageone" src="{{!empty($setting->favicon)?url('upload/setting/'.$setting->favicon):url('upload/no_image.png')}}" style="width:60px; height:60px; border:1px solid #CCC;">
                   </div>
 
 
